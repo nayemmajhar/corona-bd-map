@@ -1,0 +1,65 @@
+{
+  "name": "fkweb",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bootstrap": "^4.4.1",
+    "consts": "0.0.2",
+    "eslint-loader": "^3.0.3",
+    "fibers": "^4.0.2",
+    "globalize": "^1.4.2",
+    "jquery": "^1.9.1",
+    "leaflet": "^1.6.0",
+    "leaflet-control-geocoder": "^1.10.0",
+    "leaflet-routing-machine": "^3.2.12",
+    "lrm-google": "^1.0.1",
+    "lrm-graphhopper": "^1.3.0",
+    "node-sass": "^4.13.1",
+    "popper.js": "^1.16.0",
+    "prop-types": "^15.7.2",
+    "query-string": "^6.8.1",
+    "react": "^16.8.6",
+    "react-datepicker": "^2.7.0",
+    "react-dom": "^16.8.6",
+    "react-google-autocomplete": "^1.1.0",
+    "react-leaflet": "^2.6.1",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "^3.3.0",
+    "react-spinners": "^0.8.0",
+    "react-widgets": "^4.4.11",
+    "react-widgets-globalize": "^5.0.20",
+    "reactstrap": "^8.0.0",
+    "redux": "^4.0.4",
+    "sass": "^1.24.4",
+    "types": "^0.1.1",
+    "typescript": "^3.7.4",
+    "typescript-eslint": "0.0.1-alpha.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "stop": "pkill --signal SIGINT ctweb"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0"
+  }
+}

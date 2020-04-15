@@ -1,0 +1,266 @@
+
+body{
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.navbar-light .navbar-brand{
+    padding: 0px;
+}
+
+.navbar{
+    padding: 12px;
+}
+
+.navbar-brand.py-1{
+    padding: 0!important;
+}
+
+.site-logo{
+    max-height: 48px;
+}
+
+.bc-image-1{
+    background-image: url(../img/bannerSVG.svg);
+    width: 100%;
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+    transition-duration: 2000ms;
+}
+
+.swiper-wrapper.dark-overlay{
+    transition-duration: 2000ms;
+}
+
+.card-img-top{
+    max-height: 240px;
+}
+
+.leaflet-container{
+    height: calc(600px);
+}
+
+.tour-grid-item{
+    background-color: #FFF;
+    border-radius: 3px;
+    box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.16);
+}
+
+.tour-grid-item:hover{
+    box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.3);
+}
+
+.tour-grid-item a{
+    color: #666;
+    font-weight: 400;
+}
+
+.tour-grid-item a:hover{
+    text-decoration: none;
+}
+
+.tour-grid-item img{
+    border-radius: 3px 3px 0 0;
+}
+
+.tour-grid-item .content{
+    text-align: left;
+    padding: 15px;
+}
+
+.tour-grid-item .content p{
+    margin-bottom: 0px;
+}
+
+footer .bg-gray-200 {
+    background: #34495E!important;
+    color: rgba(255, 255, 255, 0.8)!important;
+}
+
+footer .site-logo{
+    margin-left: -21px;
+}
+
+footer .text-dark,
+footer .text-muted,
+footer .input-group-append .border-left-0 {
+    color: rgba(255, 255, 255, 0.8)!important;
+}
+
+footer .border-dark,
+footer .input-group-append .border-left-0{
+    border-color: #f1f1f1!important;
+}
+
+section.tour-list .btn-tour,
+section.place-list .btn-place{
+    display: inline-block;
+    max-width: 200px;
+    margin-top: 10px;
+}
+
+section.place-list{
+    background: #e9e5e0!important;
+}
+
+.place_grid_item,
+.tour-grid-item{
+    margin-bottom: 30px;
+}
+
+.place_grid_item,
+.place_grid_item_post_thumbnail,
+.place_grid_item_post_thumbnail a{
+    text-align: left;
+    position: relative;
+    overflow: hidden;
+}
+
+.place_grid_item_inner_content{
+    background: linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%);
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 5.5em 1.875em 1.875em;
+    box-shadow: 0 0 20px rgba(0,0,0,0);
+    z-index: 1;
+}
+
+.myDivIcon {
+    font-size : 18px;
+    color: #E83E8C;
+}
+
+.myDivIcon.current-place{
+    font-size: 30px;
+    color: #005A0A;
+}
+
+.tour-map-single .myDivIcon{
+    opacity: .9;
+}
+.tour-map-single .myDivIcon:hover{
+    opacity: 1;
+}
+
+.myDivIcon.route-places{
+    color: #005A0A;
+}
+
+.place-maps.leaflet-container{
+    height: 530px;
+}
+
+.place-map.leaflet-container{
+    height: 480px;
+}
+
+.leaflet-popup-content p{
+    margin: 5px;
+}
+
+.place-information{
+    font-weight: 300;
+}
+
+.place-info-text p{
+    font-size: 15px;
+    line-height: 24px;
+}
+
+.tour-timeline {
+    position: relative;
+}
+
+.tour-timeline::after,
+.tour-timeline::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20px;
+    width: 1px;
+    border-right: 2px dotted rgba(0,0,0,.1);
+}
+
+.timeline-item {
+    margin-bottom: 1.5rem!important;
+}
+
+.ct-tour-media {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+}
+
+.ct-tour-img {
+    margin-right: .75rem;
+    flex-shrink: 0;
+}
+
+.ct-tour-image-overlap {
+    position: relative;
+    z-index: 100;
+}
+
+.ct-tour-image-box {
+    width: 60px;
+    font-size: .875rem;
+}
+
+.ct-tour-image-box-inner {
+    background-color: #E83E8C;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    display: inline-block;
+    border-radius: 9999em;
+    text-align: center;
+    color: #fff;
+}
+
+.ct-tour-body {
+    margin-bottom: 0;
+    -webkit-box-flex: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.ct-tour-content {
+    padding-top: .375rem;
+    padding-bottom: .375rem;
+    position: relative;
+    z-index: 100;
+}
+
+.ct-tour-content-box {
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.3)!important;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.3)!important;
+    max-width: 400px;
+    border: 1px solid #f1f1f1;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.ct-tour-place-text{
+    padding: 15px;
+}
+
+.ct-tour-place-text p{
+    color: #4f5861;
+    margin-bottom: 0;
+}
+
+.ct-tour-place-title {
+    font-size: 1.2rem;
+}
+
+.timeline-item-wrap{
+    margin-top: 50px;
+}
