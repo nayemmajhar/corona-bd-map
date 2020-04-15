@@ -20,6 +20,11 @@ body{
     max-height: 48px;
 }
 
+.header{
+    padding: 20px 0;
+    background: #F7F8FC;
+}
+
 .bc-image-1{
     background-image: url(../img/bannerSVG.svg);
     width: 100%;
@@ -103,164 +108,107 @@ section.place-list{
     background: #e9e5e0!important;
 }
 
-.place_grid_item,
-.tour-grid-item{
-    margin-bottom: 30px;
+.overall-report {
+    background: #F7F8FC;
+    border-radius: 6px;
 }
 
-.place_grid_item,
-.place_grid_item_post_thumbnail,
-.place_grid_item_post_thumbnail a{
-    text-align: left;
-    position: relative;
-    overflow: hidden;
+#current-map{
+    background: #F7F8FC;
+    padding: 20px;
+    border-radius: 6px;
 }
 
-.place_grid_item_inner_content{
-    background: linear-gradient(to bottom,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 50%);
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 5.5em 1.875em 1.875em;
-    box-shadow: 0 0 20px rgba(0,0,0,0);
-    z-index: 1;
-}
-
-.myDivIcon {
-    font-size : 18px;
-    color: #E83E8C;
-}
-
-.myDivIcon.current-place{
-    font-size: 30px;
-    color: #005A0A;
-}
-
-.tour-map-single .myDivIcon{
-    opacity: .9;
-}
-.tour-map-single .myDivIcon:hover{
-    opacity: 1;
-}
-
-.myDivIcon.route-places{
-    color: #005A0A;
-}
-
-.place-maps.leaflet-container{
-    height: 530px;
-}
-
-.place-map.leaflet-container{
-    height: 480px;
-}
-
-.leaflet-popup-content p{
-    margin: 5px;
-}
-
-.place-information{
-    font-weight: 300;
-}
-
-.place-info-text p{
-    font-size: 15px;
-    line-height: 24px;
-}
-
-.tour-timeline {
-    position: relative;
-}
-
-.tour-timeline::after,
-.tour-timeline::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 20px;
-    width: 1px;
-    border-right: 2px dotted rgba(0,0,0,.1);
-}
-
-.timeline-item {
-    margin-bottom: 1.5rem!important;
-}
-
-.ct-tour-media {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: start;
-    -ms-flex-align: start;
-    align-items: flex-start;
-}
-
-.ct-tour-img {
-    margin-right: .75rem;
-    flex-shrink: 0;
-}
-
-.ct-tour-image-overlap {
-    position: relative;
-    z-index: 100;
-}
-
-.ct-tour-image-box {
-    width: 60px;
-    font-size: .875rem;
-}
-
-.ct-tour-image-box-inner {
-    background-color: #E83E8C;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+.overall-report .last-updated{
     font-size: 14px;
-    display: inline-block;
-    border-radius: 9999em;
-    text-align: center;
-    color: #fff;
-}
-
-.ct-tour-body {
-    margin-bottom: 0;
-    -webkit-box-flex: 1;
-    -ms-flex-positive: 1;
-    flex-grow: 1;
-    min-width: 0;
-}
-
-.ct-tour-content {
-    padding-top: .375rem;
-    padding-bottom: .375rem;
-    position: relative;
-    z-index: 100;
-}
-
-.ct-tour-content-box {
-    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.3)!important;
-    box-shadow: 0 1px 2px 0 rgba(0,0,0,.3)!important;
-    max-width: 400px;
-    border: 1px solid #f1f1f1;
-    border-radius: 3px;
-    overflow: hidden;
-}
-
-.ct-tour-place-text{
-    padding: 15px;
-}
-
-.ct-tour-place-text p{
-    color: #4f5861;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-bottom: 1px solid #E9E5E0;
+    color: #AEAED5;
     margin-bottom: 0;
 }
 
-.ct-tour-place-title {
-    font-size: 1.2rem;
+.stats-box{
+    padding: 30px 20px;
+    border-bottom: 1px solid #E9E5E0;
+    align-items: center;
 }
 
-.timeline-item-wrap{
-    margin-top: 50px;
+.stats-box .stats-title{
+    color: rgb(73, 73, 85);
+    margin-bottom: 0px;
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 18px;
 }
+
+.stats-box .stats-info{
+    font-weight: 700;
+    line-height: 1.2;
+    color: #222;
+    font-size: 48px;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+}
+
+.overall-infected .stats-box .stats-info{
+    color: #fbb140;
+}
+
+.overall-recovered .stats-box .stats-info{
+    color: #2dce89;
+}
+
+.overall-death .stats-box .stats-info{
+    color: #f5365c;
+}
+
+.help-hotline .stats-box{
+    padding: 20px;
+}
+
+.hotline-number{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.hotline-number .institute{
+    margin-bottom: 20px;
+}
+
+.hotline-number .institute:last-child{
+    margin-bottom: 0;
+}
+
+.hotline-number .institute span{
+    display: block;
+}
+
+.hotline-number .institute .name{
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    letter-spacing: .7px;
+}
+
+.hotline-number .institute .telephone a{
+    font-size: 24px;
+    font-weight: 700;
+    text-decoration: none;
+    color: #00A650;
+}
+
+.hotline-number .institute .telephone a i{
+    color:  rgb(2, 99, 49);
+}
+
+.hotline-number .institute .telephone a:hover{
+    color: rgb(2, 99, 49);
+}
+
+.overall-report.right-sidebar-2{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+

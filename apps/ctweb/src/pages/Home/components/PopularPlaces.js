@@ -43,14 +43,43 @@ class PopularPlaces extends React.Component{
     render(){
 
         return(
-            <section className="py-3 place-list">
-                <div className="container">
+            <section className="py-4 place-list">
+                <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-3 mb-3 mb-lg-0 text-center">
-                            <p>Hello</p>
+                            <div className="overall-report">
+                                <h6 className="last-updated text-left">Last update: 15-04-2020</h6>
+                                <div className="overall-active-case">
+                                    <div class="stats-box">
+                                        <h6 className="stats-info">1150</h6>
+                                        <h5 className="stats-title">Active Cases</h5>
+                                    </div>
+                                </div>
+                                <div className="overall-infected">
+                                    <div class="stats-box">
+                                        <h6 className="stats-info">1209</h6>
+                                        <h5 className="stats-title">Number Cases</h5>
+                                    </div>
+                                </div>
+                                <div className="overall-recovered">
+                                    <div class="stats-box">
+                                        <h6 className="stats-info">40</h6>
+                                        <h5 className="stats-title">Official Cured</h5>
+                                    </div>
+                                </div>
+                                <div className="overall-death">
+                                    <div class="stats-box">
+                                        <h6 className="stats-info">30</h6>
+                                        <h5 className="stats-title">Official Deaths</h5>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="col-lg-6 mb-6 mb-lg-0 text-center">
-                            
+                        <div id="current-map">
+                            <div>
+                                <p className="text-right">Map: Last updated on 15-04-2020</p>
+                            </div>
                             <svg version="1.1" id="BD_XXX_District_locator_map" xmlnsSvg="http://www.w3.org/2000/svg" xmlnsRdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlnsDc="http://purl.org/dc/elements/1.1/" xmlnsCc="http://creativecommons.org/ns#" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 1550.242 2149.604" enable-background="new 0 0 1550.242 2149.604" xmlSpace="preserve">
                                 <g id="Rongpur" opacity="0.4" onHover onClick={this.onClickDivision.bind(this, 'Rongpur')}>
                                     <path id="path4167" className="rongpur" fill="#4DAF4A" stroke="#4DAF4A" stroke-width="2" d="M254.128,132.288l6.354-6.257l6.354,1.251l6.354,5.005   l-5.083,13.765l7.625,2.503l6.354,7.508l7.625-1.251l-1.271-8.76l-6.354-3.754l7.625-8.76l13.979,1.251l6.354,8.76l5.083,6.257   l3.813,6.257l2.542-3.754h11.438l2.542,2.503l7.625-3.754v8.759l1.271,15.017l8.896,6.257l8.896,5.006l2.542,6.257l-1.271,7.508   l-2.542,18.771l3.813,12.514l2.542,13.765l10.167,8.76l11.438,7.508l8.896,7.508l-3.813,10.011l-3.813,8.76l-3.813,5.005   l-7.625-8.759l-12.709,11.262l1.271,13.769l-10.167-10.011l-6.354,12.513l-20.334-5.005l-13.98,3.754l5.083,12.514l-6.354,7.509   l-3.813,6.257l-11.438-1.252l-10.167-8.76h-6.354v-13.765l-10.167-2.503v-30.033l-5.083-6.257l-5.083-8.76l-13.98-3.754   l1.271-6.257l-3.813-2.503v-10.01l-1.271-3.754l5.083-6.257l-3.813,6.257l7.625-11.263l7.625-3.754v-21.273l3.813-7.508v-5.006   l-1.271-17.519l3.813-7.508l-13.979-15.017v-17.52L254.128,132.288L254.128,132.288z"/>
@@ -251,8 +280,51 @@ class PopularPlaces extends React.Component{
                                 </g>
                             </svg>
                         </div>
+                        </div>
                         <div className="col-lg-3 mb-3 mb-lg-0 text-center">
-                            <p>Hello</p>
+                            <div className="overall-report right-sidebar-1">
+                                <h6 className="last-updated text-left">Hotline & Call Center</h6>
+                                <div className="help-hotline text-left">
+                                    <div class="stats-box">
+                                        <ul className="hotline-number">
+                                            <li className="institute">
+                                                <span className="name">National Call Center</span>
+                                                <span className="telephone">
+                                                    <a href="tel:333"><i className="fa fa-phone-volume"></i>&nbsp;333</a>
+                                                </span>
+                                            </li>
+                                            <li className="institute">
+                                                <span className="name">IEDCR</span>
+                                                <span className="telephone">
+                                                    <a href="tel:10655"><i className="fa fa-phone-volume"></i>&nbsp;10655</a>
+                                                </span>
+                                            </li>
+                                            <li className="institute">
+                                                <span className="name">Specialist Health Line</span>
+                                                <span className="telephone">
+                                                    <a href="tel:019611677777"><i className="fa fa-phone-volume"></i>&nbsp;0196116 77777</a>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="overall-report right-sidebar-2">
+                                <h6 className="last-updated text-left">Important websites</h6>
+                                <div className="important-info text-left">
+                                    <div class="stats-box">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="overall-report right-sidebar-3">
+                                <h6 className="last-updated text-left">Site Notice</h6>
+                                <div className="important-info text-left">
+                                    <div class="stats-box">
+                                        <p>This site cann't ensure the correctness of information. The site depends of third party informations.</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
