@@ -21,6 +21,6 @@ $router->group(
     [
         'prefix' => 'v1/reports'
     ], function () use ($router) {
-        $router->get('/',  ['uses' => 'PlaceController@showAllPlaces']);
+        $router->get('/',  ['uses' => 'ReportController@showAllReports']);
 });
 

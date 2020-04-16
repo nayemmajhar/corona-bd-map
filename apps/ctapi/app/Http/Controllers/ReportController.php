@@ -7,18 +7,28 @@ use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PlaceController extends Controller
+class ReportController extends Controller
 {
 
-    public function showAllPlaces(){
+    public function showAllReports(){
 
-        $places = DB::table('places')
-                    ->join('place_infomation', 'place_infomation.place_id', '=', 'places.id')
-                    ->select(DB::raw('places.*, place_infomation.*'))
-                    ->get();
+        $reports = array();
+
+        $totalCases = DB::table('daily_report_overall')
+                        ->select(DB::raw('MAX(daydate) AS latestDate'), DB::raw('SUM(infected) AS infected_no'),DB::raw('SUM(recovered) AS recovered_no'),DB::raw('SUM(death) AS death_no'))
+                        ->first();
+
+        $divisionCases = DB::table('daily_report_division')
+                            ->join('divisions', 'divisions.id', '=', 'daily_report_division.division_id')
+                            ->select('divisions.title',DB::raw('SUM(infected) AS infected'),DB::raw('SUM(recovered) AS recovered'),DB::raw('SUM(death) AS death'))
+                            ->groupBy('divisions.title')
+                            ->get();
+
+        $reports['totalCases'] = $totalCases;
+        $reports['divisionCases'] = $divisionCases;
 
         return response()->json([
-            'places' => $places,
+            'report' => $reports,
             'message' => 'Success'
         ], 200);
     }
