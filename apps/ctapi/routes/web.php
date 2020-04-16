@@ -19,36 +19,8 @@ $router->get('/', function () use ($router) {
 
 $router->group(
     [
-        'prefix' => 'v1/places'
+        'prefix' => 'v1/reports'
     ], function () use ($router) {
         $router->get('/',  ['uses' => 'PlaceController@showAllPlaces']);
-        $router->get('/popular', ['uses' => 'PlaceController@showPopularPlaces']);
-        $router->get('/{id}', ['uses' => 'PlaceController@showPlaceById']);
 });
-
-$router->group(
-    [
-        'prefix' => 'v1/tours'
-    ], function () use ($router) {
-        $router->get('/',  ['uses' => 'TourController@showAllTours']);
-        $router->get('/popular', ['uses' => 'TourController@showPopularTours']);
-        $router->get('/{id}', ['uses' => 'TourController@showTourById']);
-        $router->get('map/{id}', ['uses' => 'TourController@showSpotsByTourId']);
-});
-
-$router->group(
-    [
-        'prefix' => 'v1/cities'
-    ], function () use ($router) {
-        $router->get('/{id}', ['uses' => 'CityController@showCityById']);
-});
-
-$router->group(
-    [
-        'prefix' => 'v1/vectors'
-    ], function () use ($router) {
-        $router->get('/', ['uses' => 'VectorController@showAllVectors']);
-});
-
-
 
