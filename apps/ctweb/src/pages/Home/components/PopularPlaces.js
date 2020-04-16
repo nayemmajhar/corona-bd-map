@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom'
-import Image from '../../../helpers/Image'
+import DivisionMapNumber from "./DivisionMapNumber"
 import ctKielApi from '../../../helpers/ctKielApi'
 import axios from 'axios'
 
@@ -9,18 +9,24 @@ class PopularPlaces extends React.Component{
     constructor() {
         super();
         this.state = {
-            places:[]
+            division:{},
+            totalCases: {}
         };
     }
 
     componentDidMount() {
     
-        const url = ctKielApi.URL + '/places/popular'
+        const url = ctKielApi.URL + '/reports'
         axios.get(url).then(response => response.data)
         .then((data) => {
-            console.log(data.places);
+            console.log(data);
+
+            let divisions = {}
+            data.report.divisionCases.map((item)=> divisions[item.title.toLowerCase()] = item )
+            
             this.setState({
-                places: data.places
+                division: divisions,
+                totalCases: data.report.totalCases
             })
         }).catch(function (error) {
             console.log(error);
@@ -41,52 +47,51 @@ class PopularPlaces extends React.Component{
     }
 
     render(){
+        const {totalCases, division} = this.state
 
+        console.log(division);
+        
         return(
             <section className="py-4 place-list">
                 <div className="container-fluid">
                     <div className="row">
                         <div className="col-lg-3 mb-3 mb-lg-0 text-center">
+                            {
+                            Object.keys(totalCases).length !== 0 &&
                             <div className="overall-report">
-                                <h6 className="last-updated text-left">Last update: 15-04-2020</h6>
+                                <h6 className="last-updated text-left">Last update: {totalCases.latestdate}</h6>
                                 <div className="overall-active-case">
                                     <div class="stats-box">
-                                        <h6 className="stats-info">1150</h6>
+                                        <h6 className="stats-info">
+                                            {totalCases.infected_no - totalCases.recovered_no - totalCases.death_no}
+                                        </h6>
                                         <h5 className="stats-title">Active Cases</h5>
                                     </div>
                                 </div>
                                 <div className="overall-infected">
                                     <div class="stats-box">
-                                        <h6 className="stats-info">1209</h6>
-                                        <h5 className="stats-title">Number Cases</h5>
+                                        <h6 className="stats-info">{totalCases.infected_no}</h6>
+                                        <h5 className="stats-title">Number of Cases</h5>
                                     </div>
                                 </div>
                                 <div className="overall-recovered">
                                     <div class="stats-box">
-                                        <h6 className="stats-info">40</h6>
+                                        <h6 className="stats-info">{totalCases.recovered_no}</h6>
                                         <h5 className="stats-title">Official Cured</h5>
                                     </div>
                                 </div>
                                 <div className="overall-death">
                                     <div class="stats-box">
-                                        <h6 className="stats-info">30</h6>
+                                        <h6 className="stats-info">{totalCases.death_no}</h6>
                                         <h5 className="stats-title">Official Deaths</h5>
                                     </div>
                                 </div>
                             </div>
+                            }
                         </div>
                         <div className="col-lg-6 mb-6 mb-lg-0 text-center">
                         <div id="current-map">
-                            <div>
-                                <p className="text-right">Map: Last updated on 15-04-2020</p>
-                            </div>
                             <svg version="1.1" id="BD_XXX_District_locator_map" xmlnsSvg="http://www.w3.org/2000/svg" xmlnsRdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlnsDc="http://purl.org/dc/elements/1.1/" xmlnsCc="http://creativecommons.org/ns#" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 1550.242 2149.604" enable-background="new 0 0 1550.242 2149.604" xmlSpace="preserve">
-                                <defs>
-                                    <filter x="0" y="0" width="1" height="1" id="caseSolid">
-                                    <feFlood flood-color="#FFFFFF"/>
-                                    <feComposite in="SourceGraphic" operator="add" />
-                                    </filter>
-                                </defs>
                                 <g id="Rongpur" opacity="0.4" onHover onClick={this.onClickDivision.bind(this, 'Rongpur')}>
                                     <path id="path4167" className="rongpur" fill="#4DAF4A" stroke="#4DAF4A" stroke-width="2" d="M254.128,132.288l6.354-6.257l6.354,1.251l6.354,5.005   l-5.083,13.765l7.625,2.503l6.354,7.508l7.625-1.251l-1.271-8.76l-6.354-3.754l7.625-8.76l13.979,1.251l6.354,8.76l5.083,6.257   l3.813,6.257l2.542-3.754h11.438l2.542,2.503l7.625-3.754v8.759l1.271,15.017l8.896,6.257l8.896,5.006l2.542,6.257l-1.271,7.508   l-2.542,18.771l3.813,12.514l2.542,13.765l10.167,8.76l11.438,7.508l8.896,7.508l-3.813,10.011l-3.813,8.76l-3.813,5.005   l-7.625-8.759l-12.709,11.262l1.271,13.769l-10.167-10.011l-6.354,12.513l-20.334-5.005l-13.98,3.754l5.083,12.514l-6.354,7.509   l-3.813,6.257l-11.438-1.252l-10.167-8.76h-6.354v-13.765l-10.167-2.503v-30.033l-5.083-6.257l-5.083-8.76l-13.98-3.754   l1.271-6.257l-3.813-2.503v-10.01l-1.271-3.754l5.083-6.257l-3.813,6.257l7.625-11.263l7.625-3.754v-21.273l3.813-7.508v-5.006   l-1.271-17.519l3.813-7.508l-13.979-15.017v-17.52L254.128,132.288L254.128,132.288z"/>
                                     <path id="path2169" className="rongpur" fill="#4DAF4A" stroke="#4DAF4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="   M115.598,78.479l-2.542-8.759l-2.542-6.257l6.354-8.759l5.083-11.263l5.084-15.017l10.167-15.017l2.542,16.268l1.271,8.76   l10.167,10.011l10.167-2.502l2.542,8.76l10.167,2.502l1.271,7.508l10.167,3.754l1.271,5.005l10.167,2.503l6.354-7.508l3.813,10.011   l5.083,6.257l7.625,5.005l2.542,5.005l6.354-2.502l3.813,3.754l-3.813,8.76l3.813,3.754l5.083,3.754v2.502l10.167-1.251v5.005   l2.542,5.005v6.257l6.354,5.006l-1.271,11.262l5.083,8.76l6.354,8.76l-2.542,8.76v12.514v11.262l-3.813,10.011l2.542,12.514   l-6.354,8.76l-8.896,12.514l-10.167-2.503l-13.98-1.251l-5.083-10.011l-6.354-5.005l7.625-13.765l-5.083-10.011l-6.354-7.508   l-10.167-3.754l-5.083-5.006l-3.813-7.508l-6.354,2.502c0,0-1.588-1.251-5.083-2.502s-8.896-2.503-8.896-2.503l-6.354-2.503   l-6.354,5.006l-10.167-2.503l-8.896-3.754l-7.625,5.006l-1.271,6.257c0,0-4.13-0.626-8.896-2.503s-10.167-5.005-10.167-5.005   l-2.542-3.754l8.896-5.005l5.084-6.257l-3.813-7.508v-17.52l13.98-1.251l5.083-5.005l5.083-7.508l11.438-3.754l2.542-8.76   l6.354,10.011l6.354-3.754l5.083-8.76l-5.083-6.257l-5.083-7.508v-8.76l-8.896-7.508l-11.438,2.503l-6.354-10.011l-6.354,5.006   l-7.625-1.251L115.598,78.479z"/>
@@ -136,7 +141,7 @@ class PopularPlaces extends React.Component{
                                     <path id="path5173" fill="#00753B" stroke="#00753B" stroke-width="2" d="M980.01,1529.239l-7.188,23.006l-8.987,26.547v24.775   l17.975,19.467v-23.006v-23.009l8.985-23.009l1.798-12.389L980.01,1529.239L980.01,1529.239z"/>
                                     <path id="path5175" fill="#00753B" stroke="#00753B" stroke-width="2" d="M890.145,1660.198l-5.394,14.157h17.974L890.145,1660.198   z"/>
                                 </g>
-                                <g id="Chittagong" opacity="0.4">
+                                <g id="Chattagram" opacity="0.4">
                                     <path id="path4177" fill="#67923D" stroke="#67923D" stroke-width="2" d="M926.43,1059.563l-15.252-6.258v-3.754l-12.709-10.012   l3.813-10.013l11.438-13.769l1.271-17.521l8.896-5.006l3.813,5.006h11.438l3.813-3.755l21.604,2.503v-8.763l7.625-2.502   l5.084-21.271l10.166-2.503l-6.354-11.266l11.438-16.27l13.98-6.258l-1.271-5.006l7.627-7.512l-2.543-12.515l-7.625-1.251   l-7.625-13.769l10.167-12.513l17.793,2.503l6.354-10.012l21.604-7.509l21.604,6.257l11.438,7.51l13.979-20.021l10.167,2.505v7.508   l-16.521,11.264l10.166,6.259v6.26l-12.707-3.756l-1.271,15.019l7.625,5.007l-8.896,2.503l6.354,20.021l6.354,8.76v3.755   l-5.084,2.503v10.013v3.756l-13.979,6.257l5.083,12.516l-10.167,2.504l-7.625,15.02l7.625,8.762l1.271,6.257l-6.354,5.007   l-2.541,10.014l5.083,10.012l-7.625,10.012l-5.084-3.754h-8.896l-6.354,5.006l1.271,15.021l6.354,2.503l3.813-5.006l3.813,2.503   v16.271h-5.083l-8.896-7.51l-2.544,3.754l-10.166-10.012v-10.012h-5.084l-1.271-5.005l-10.167-2.504l6.354-5.009l-13.979-11.265   l-20.335-1.251l-8.896,7.509h-15.25l-6.354,1.253l2.542,10.015l-11.438,2.503l-13.979-10.013l-7.626,5.007l1.271,3.755l3.813,3.754   L926.43,1059.563L926.43,1059.563z"/>
                                     <path id="path3208" fill="#67923D" stroke="#67923D" stroke-width="0.5" d="M881.158,1074.863l-1.354,11.941l7.644,9.734   l2.247,5.752l4.938-0.887l6.74-10.18l7.64-12.832l-3.596-9.291l0.449-10.614l-7.271-8.545l-7.563,14.297l-12.132-3.102   l-0.449,9.291L881.158,1074.863z"/>
                                     <path id="path4179" fill="#67923D" stroke="#67923D" stroke-width="2" d="M900.029,1104.063l11.229-20.352l4.045-6.195   l-5.393-8.848l1.797-15.043l14.379,6.192l6.29-9.291l-3.146-5.313l-0.898-3.979l5.842-3.54l14.828,9.73l11.232-3.1l-1.354-9.291   l6.74-1.771l14.827,0.44l8.088-7.521l19.321,1.327l-3.146-0.885l11.232,6.192l6.736,5.75l-5.394,4.426l9.438,3.099l1.798,4.427   h4.939l-0.896,9.731l10.337,9.73l2.245,4.428l-0.448,11.503l3.146,7.521l10.336,10.617l-0.447,7.078l6.291,2.213l-3.146,2.654   l0.449,5.312l13.029,10.178l6.737,21.681l6.737,21.682l1.134,7.452l-1.581,5.377l0.896,4.425l8.982,4.865l-3.595,3.099   l-0.448,3.979l3.146,6.638l2.696,3.538l-0.897,4.428l1.798,34.064l4.491,5.752l4.942,9.731l-1.351,11.062l-9.887,5.752   l-12.582-6.637l-10.781,0.442l-16.178-2.214l-8.089-5.313l-8.088-0.442l-9.438,5.313l-3.146-2.214h-8.985l-11.684-5.752   l-5.841-10.176l-0.449,0.885l-7.188-0.44l-4.938-7.08l8.537-2.211l5.392-7.521l-0.896-15.483l5.842-9.733l-6.739-6.188   l-1.349-9.734l-8.091-9.729l-3.596-7.97l-13.479-9.729l-1.797-8.854l-9.438-6.188l-3.596-17.254l-17.976-4.867l-13.027,11.063   l-4.942-3.1l-4.94,10.178h-5.395l-12.132-6.637v-8.404H902.7l-5.842-6.191l-8.537-8.406l7.188-3.979l-0.448-8.402L900.029,1104.063   L900.029,1104.063z"/>
@@ -211,23 +216,18 @@ class PopularPlaces extends React.Component{
                                     <text fill="#003333" transform="matrix(1 0 0 1 581 636)" font-size="60">Mymensingh</text>
                                     <text fill="#003333" transform="matrix(1 0 0 1 637 1098)" font-size="60">Dhaka</text>
                                     <text fill="#003333" transform="matrix(1 0 0 1 1112 728)" font-size="60">Sylhet</text>
-                                    <text fill="#003333" transform="matrix(1 0 0 1 1026 1392)" font-size="60">Chittagong</text>
+                                    <text fill="#003333" transform="matrix(1 0 0 1 1026 1392)" font-size="60">Chattagram</text>
                                     <text fill="#003333" transform="matrix(1 0 0 1 684 1543)" font-size="60">Barisal</text>
                                     <text fill="#003333" transform="matrix(1 0 0 1 355 1434)" font-size="60">Khulna</text>
                                     <text fill="#003333" transform="matrix(1 0 0 1 271 377)" font-size="60">Rongpur</text>
                                     <text fill="#003333" transform="matrix(1 0 0 1 250 750)" font-size="60">Rajshahi</text>
                                 </g>
-                                <g id="number-case">
-                                    <text fill="#FF0000" filter="url('#caseSolid')" transform="matrix(1 0 0 1 700 564)" font-weight="bold" font-size="48">&nbsp;3000&nbsp;</text>
-                                    <text fill="#FF0000" filter="url('#caseSolid')" transform="matrix(1 0 0 1 675 1028)" font-weight="bold" font-size="48">&nbsp;1000&nbsp;</text>
-                                    <text fill="#FF0000" filter="url('#caseSolid')" transform="matrix(1 0 0 1 1150 652)" font-weight="bold" font-size="48">&nbsp;3000&nbsp;</text>
-                                    <text fill="#FF0000" filter="url('#caseSolid')" transform="matrix(1 0 0 1 1100 1322)" font-weight="bold" font-size="48">&nbsp;3000&nbsp;</text>
-                                    <text fill="#FF0000" filter="url('#caseSolid')" transform="matrix(1 0 0 1 705 1473)" font-weight="bold" font-size="48">&nbsp;3000&nbsp;</text>
-                                    <text fill="#FF0000" filter="url('#caseSolid')" transform="matrix(1 0 0 1 378 1366)" font-weight="bold" font-size="48">&nbsp;3000&nbsp;</text>
-                                    <text fill="#FF0000" filter="url('#caseSolid')" transform="matrix(1 0 0 1 310 307)" font-weight="bold" font-size="48">&nbsp;3000&nbsp;</text>
-                                    <text fill="#FF0000" filter="url('#caseSolid')" transform="matrix(1 0 0 1 320 680)" font-weight="bold" font-size="48">&nbsp;3000&nbsp;</text>
-                                </g>
-                                
+                                {
+                                    Object.keys(division).length !== 0 &&
+                                    <DivisionMapNumber
+                                        divCases={division} 
+                                    />
+                                }   
                             </svg>
                         </div>
                         </div>
