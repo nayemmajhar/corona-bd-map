@@ -190,17 +190,14 @@ section.place-list{
     font-weight: 700;
     margin-bottom: 5px;
     letter-spacing: .7px;
+    color: rgb(73, 73, 85);
 }
 
 .hotline-number .institute .telephone a{
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     text-decoration: none;
     color: #00A650;
-}
-
-.hotline-number .institute .telephone a i{
-    color:  rgb(2, 99, 49);
 }
 
 .hotline-number .institute .telephone a:hover{
@@ -210,5 +207,9 @@ section.place-list{
 .overall-report.right-sidebar-2{
     margin-top: 25px;
     margin-bottom: 25px;
+}
+
+.map-hover-color{
+
 }
 
