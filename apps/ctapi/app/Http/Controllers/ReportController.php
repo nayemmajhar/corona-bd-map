@@ -24,6 +24,16 @@ class ReportController extends Controller
                             ->groupBy('divisions.title')
                             ->get();
 
+        foreach ($divisionCases as $key => $item) {
+            if($item->infected > 1000){
+                $divisionCases[$key]->color = '#ff0505';
+            } elseif( 1000 > $item->infected && $item->infected > 300){
+                $divisionCases[$key]->color = '#ff5b00';
+            } else {
+                $divisionCases[$key]->color = '#ff8f00';
+            }
+        }
+
         $reports['totalCases'] = $totalCases;
         $reports['divisionCases'] = $divisionCases;
 
