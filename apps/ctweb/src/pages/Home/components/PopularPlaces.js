@@ -61,30 +61,30 @@ class PopularPlaces extends React.Component{
                             {
                             Object.keys(totalCases).length !== 0 &&
                             <div className="overall-report">
-                                <h6 className="last-updated text-left">Last update: {totalCases.latestdate}</h6>
+                                <h6 className="last-updated text-left">Last update: {totalCases.daydate}</h6>
                                 <div className="overall-active-case">
                                     <div class="stats-box">
                                         <h6 className="stats-info">
-                                            {totalCases.infected_no - totalCases.recovered_no - totalCases.death_no}
+                                            {totalCases.infected - totalCases.recovered - totalCases.death}
                                         </h6>
                                         <h5 className="stats-title">Active Cases</h5>
                                     </div>
                                 </div>
                                 <div className="overall-infected">
                                     <div class="stats-box">
-                                        <h6 className="stats-info">{totalCases.infected_no}</h6>
+                                        <h6 className="stats-info">{totalCases.infected}</h6>
                                         <h5 className="stats-title">Number of Cases</h5>
                                     </div>
                                 </div>
                                 <div className="overall-recovered">
                                     <div class="stats-box">
-                                        <h6 className="stats-info">{totalCases.recovered_no}</h6>
+                                        <h6 className="stats-info">{totalCases.recovered}</h6>
                                         <h5 className="stats-title">Official Cured</h5>
                                     </div>
                                 </div>
                                 <div className="overall-death">
                                     <div class="stats-box">
-                                        <h6 className="stats-info">{totalCases.death_no}</h6>
+                                        <h6 className="stats-info">{totalCases.death}</h6>
                                         <h5 className="stats-title">Official Deaths</h5>
                                     </div>
                                 </div>
