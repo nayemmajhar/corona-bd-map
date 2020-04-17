@@ -21,8 +21,18 @@ body{
 }
 
 .header{
-    padding: 20px 0;
+    padding: 15px 0;
     background: #F7F8FC;
+}
+
+.header .navbar-brand.py-1{
+    color:#494855;
+    font-size: 18;
+}
+
+footer .navbar-brand.py-1{
+    color:#E0E1EF;
+    font-size: 18;
 }
 
 .bc-image-1{
@@ -209,7 +219,12 @@ section.place-list{
     margin-bottom: 25px;
 }
 
-.map-hover-color{
+#BD_XXX_District_locator_map{
+    cursor: pointer;
+}
 
+.map-color.hover-color path{
+    fill:#938779;
+    stroke: #938779;
 }
 
