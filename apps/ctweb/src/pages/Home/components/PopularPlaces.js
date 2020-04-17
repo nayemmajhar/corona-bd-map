@@ -20,8 +20,6 @@ class PopularPlaces extends React.Component{
         const url = ctKielApi.URL + '/reports'
         axios.get(url).then(response => response.data)
         .then((data) => {
-            console.log(data);
-
             let divisions = {}
             data.report.divisionCases.map((item)=> divisions[item.title.toLowerCase()] = item )
             
