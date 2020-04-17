@@ -14,20 +14,27 @@ class ReportController extends Controller
 
         $reports = array();
 
-        $totalCases = DB::table('daily_report_overall')
-                        ->select(DB::raw('MAX(daydate) AS latestDate'), DB::raw('SUM(infected) AS infected_no'),DB::raw('SUM(recovered) AS recovered_no'),DB::raw('SUM(death) AS death_no'))
-                        ->first();
+        
 
-        $divisionCases = DB::table('daily_report_division')
-                            ->join('divisions', 'divisions.id', '=', 'daily_report_division.division_id')
-                            ->select('divisions.title',DB::raw('SUM(infected) AS infected'),DB::raw('SUM(recovered) AS recovered'),DB::raw('SUM(death) AS death'))
-                            ->groupBy('divisions.title')
-                            ->get();
+        $totalCases = DB::select('SELECT infected, recovered, death, daydate
+                                FROM daily_report_overall as a
+                                WHERE daydate = (
+                                    SELECT MAX(daydate)
+                                    FROM daily_report_overall as b
+                                )')[0];
+
+        $divisionCases = DB::select('SELECT a.infected, a.recovered, a.death, a.daydate, b.title
+                                FROM daily_report_division as a
+                                LEFT JOIN divisions as b ON b.id = a.division_id
+                                WHERE a.daydate = (
+                                    SELECT MAX(daydate)
+                                    FROM daily_report_division as c
+                                )');
 
         foreach ($divisionCases as $key => $item) {
             if($item->infected > 1000){
                 $divisionCases[$key]->color = '#ff0505';
-            } elseif( 1000 > $item->infected && $item->infected > 300){
+            } elseif( 1000 >= $item->infected && $item->infected > 300){
                 $divisionCases[$key]->color = '#ff5b00';
             } else {
                 $divisionCases[$key]->color = '#ff8f00';
