@@ -294,6 +294,18 @@ class PopularPlaces extends React.Component{
                                                 </span>
                                             </li>
                                             <li className="institute">
+                                                <span className="name">Health Portal</span>
+                                                <span className="telephone">
+                                                    <a href="tel:16263"><i className="fa fa-phone-volume"></i>&nbsp;16263</a>
+                                                </span>
+                                            </li>
+                                            <li className="institute">
+                                                <span className="name">National Helpline</span>
+                                                <span className="telephone">
+                                                    <a href="tel:109"><i className="fa fa-phone-volume"></i>&nbsp;109</a>
+                                                </span>
+                                            </li>
+                                            <li className="institute">
                                                 <span className="name">Specialist Health Line</span>
                                                 <span className="telephone">
                                                     <a href="tel:019611677777"><i className="fa fa-phone-volume"></i>&nbsp;0196116 77777</a>
@@ -304,14 +316,6 @@ class PopularPlaces extends React.Component{
                                 </div>
                             </div>
                             <div className="overall-report right-sidebar-2">
-                                <h6 className="last-updated text-left">Important websites</h6>
-                                <div className="important-info text-left">
-                                    <div class="stats-box">
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="overall-report right-sidebar-3">
                                 <h6 className="last-updated text-left">Site Notice</h6>
                                 <div className="important-info text-left">
                                     <div class="stats-box">

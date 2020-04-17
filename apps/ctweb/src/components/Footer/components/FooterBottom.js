@@ -12,7 +12,7 @@ class FooterBottom extends React.Component {
                             <Logo />
                         </div>
                         <div className="col-md-6">
-                            <p className="text-sm mb-md-0 text-md-right">© 2020 Your company.  All rights reserved.</p>
+                            <p className="text-sm mb-md-0 text-md-right">© CoronaMeter Bangladesh.</p>
                         </div>
                     </div>
                 </div>
