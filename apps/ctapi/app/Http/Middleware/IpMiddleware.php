@@ -6,7 +6,7 @@ use Closure;
 class IpMiddleware
 {
     
-    public $restrictIps = ['157.230.240.148','127.0.0.1'];
+    public $restrictIps = ['87.123.202.176','127.0.0.1'];
         
     /**
      * Handle an incoming request.

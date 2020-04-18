@@ -12,15 +12,15 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return 'you don\'t have permission to access this application.';
 });
 
 //CT Routes 
 
 $router->group(
     [
-        'prefix' => 'v1/reports'
+        'prefix' => 'v1/reports',
+        'IpMiddleware' => ['IpMiddleware']
     ], function () use ($router) {
         $router->get('/',  ['uses' => 'ReportController@showAllReports']);
 });
-
