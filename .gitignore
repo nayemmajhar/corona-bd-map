@@ -3,6 +3,7 @@
 /apps/ctapi/vendor
 /apps/ctapi/database/migrations
 /fkweb/.pnp
+/apps/ctweb/build
 .pnp.js
 .idea
 
