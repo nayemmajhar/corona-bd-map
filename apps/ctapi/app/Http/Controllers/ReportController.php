@@ -33,11 +33,11 @@ class ReportController extends Controller
 
         foreach ($divisionCases as $key => $item) {
             if($item->infected > 1000){
-                $divisionCases[$key]->color = '#ff0505';
-            } elseif( 1000 >= $item->infected && $item->infected > 300){
-                $divisionCases[$key]->color = '#ff5b00';
+                $divisionCases[$key]->colorClass = 'cases-top-1';
+            } elseif( 1000 >= $item->infected && $item->infected > 70){
+                $divisionCases[$key]->colorClass = 'cases-top-2';
             } else {
-                $divisionCases[$key]->color = '#ff8f00';
+                $divisionCases[$key]->colorClass = 'cases-top-3';
             }
         }
 
