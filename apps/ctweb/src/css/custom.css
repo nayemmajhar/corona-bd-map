@@ -216,7 +216,6 @@ section.place-list{
 
 .overall-report.right-sidebar-2{
     margin-top: 25px;
-    margin-bottom: 25px;
 }
 
 #BD_XXX_District_locator_map{
@@ -227,4 +226,30 @@ section.place-list{
     fill:#938779;
     stroke: #938779;
 }
+
+/* mobile device */
+@media (max-width: 767.98px) {
+
+    .left-sidebar>div{
+        display: inline-block;
+        width: 50%;
+        border-left: 1px solid #E9E5E0;
+    }
+
+    .left-sidebar .stats-box{
+        padding: 20px;
+    }
+
+    .left-sidebar .stats-box .stats-info{
+        font-size: 32px;
+    }
+
+    .left-sidebar .stats-box .stats-title{
+        margin-top: 8px;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+}
+
 

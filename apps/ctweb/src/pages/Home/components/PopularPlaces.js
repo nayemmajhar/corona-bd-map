@@ -60,7 +60,7 @@ class PopularPlaces extends React.Component{
                         <div className="col-lg-3 mb-3 mb-lg-0 text-center">
                             {
                             Object.keys(totalCases).length !== 0 &&
-                            <div className="overall-report">
+                            <div className="overall-report left-sidebar">
                                 <h6 className="last-updated text-left">Last update: {totalCases.daydate}</h6>
                                 <div className="overall-active-case">
                                     <div class="stats-box">
@@ -91,7 +91,7 @@ class PopularPlaces extends React.Component{
                             </div>
                             }
                         </div>
-                        <div className="col-lg-6 mb-6 mb-lg-0 text-center">
+                        <div className="col-lg-6 mb-3 mb-lg-0 text-center">
                         <div id="current-map">
                             <svg version="1.1" id="BD_XXX_District_locator_map" xmlnsSvg="http://www.w3.org/2000/svg" xmlnsRdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlnsDc="http://purl.org/dc/elements/1.1/" xmlnsCc="http://creativecommons.org/ns#" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 1550.242 2149.604" enable-background="new 0 0 1550.242 2149.604" xmlSpace="preserve">
                                 <g
