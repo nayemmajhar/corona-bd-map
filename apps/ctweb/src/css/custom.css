@@ -227,6 +227,42 @@ section.place-list{
     stroke: #938779;
 }
 
+#DistrictMap{
+    margin-left: -18%;
+}
+
+
+.cases-top-1 path{
+    fill: #ba0000;
+    stroke: #ba0000;
+}
+
+.cases-top-2 path{
+    fill: #FF645B;
+    stroke: #FF645B;
+}
+
+.cases-top-3 path{
+    fill: #FFA196;
+    stroke: #FFA196;
+}
+
+path.cases-top-1{
+    fill: #ba0000;
+}
+
+path.cases-top-2{
+    fill: #FF645B;
+}
+
+path.cases-top-3{
+    fill: #FF8B80;
+}
+
+path.cases-top-4{
+    fill: #FFC2B0;
+}
+
 /* mobile device */
 @media (max-width: 767.98px) {
 
