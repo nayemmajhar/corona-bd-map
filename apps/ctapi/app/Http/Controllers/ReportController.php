@@ -31,6 +31,14 @@ class ReportController extends Controller
                                     FROM daily_report_division as c
                                 )');
 
+        $districtCases = DB::select('SELECT a.infected, a.recovered, a.death, a.daydate, b.title
+                                FROM daily_report_districts as a
+                                LEFT JOIN districts as b ON b.id = a.district_id
+                                WHERE a.daydate = (
+                                    SELECT MAX(daydate)
+                                    FROM daily_report_districts as c
+                                )');
+
         foreach ($divisionCases as $key => $item) {
             if($item->infected > 1000){
                 $divisionCases[$key]->colorClass = 'cases-top-1';
@@ -41,8 +49,27 @@ class ReportController extends Controller
             }
         }
 
+        $districtCasesObj = array();
+
+        foreach ($districtCases as $key => $item) {
+            $district = strtolower($item->title);
+            $districtCasesObj[$district] = $item;
+            if($item->infected > 300){
+                $districtCasesObj[$district]->colorClass = 'cases-dist-top-1';
+            } elseif( 300 >= $item->infected && $item->infected > 100){
+                $districtCasesObj[$district]->colorClass = 'cases-dist-top-2';
+            } elseif( 100 >= $item->infected && $item->infected > 30){
+                $districtCasesObj[$district]->colorClass = 'cases-dist-top-3';
+            } elseif( $item->infected == 0){
+                $districtCasesObj[$district]->colorClass = 'cases-dist-top-5';
+            } else {
+                $districtCasesObj[$district]->colorClass = 'cases-dist-top-4';
+            }
+        }
+
         $reports['totalCases'] = $totalCases;
         $reports['divisionCases'] = $divisionCases;
+        $reports['districtCases'] = $districtCasesObj;
 
         return response()->json([
             'report' => $reports,

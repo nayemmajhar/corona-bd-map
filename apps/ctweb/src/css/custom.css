@@ -214,6 +214,10 @@ section.place-list{
     color: rgb(2, 99, 49);
 }
 
+.area-list .last-updated{
+    text-transform: capitalize;
+}
+
 .overall-report.right-sidebar-2{
     margin-top: 25px;
 }
@@ -232,35 +236,86 @@ section.place-list{
 }
 
 
-.cases-top-1 path{
+g.cases-top-1 path{
     fill: #ba0000;
     stroke: #ba0000;
 }
 
-.cases-top-2 path{
+g.cases-top-2 path{
     fill: #FF645B;
     stroke: #FF645B;
 }
 
-.cases-top-3 path{
+g.cases-top-3 path{
     fill: #FFA196;
     stroke: #FFA196;
 }
 
-path.cases-top-1{
+.cases-dist-top-1{
+    cursor: pointer;
     fill: #ba0000;
 }
 
-path.cases-top-2{
+.cases-dist-top-2{
+    cursor: pointer;
     fill: #FF645B;
 }
 
-path.cases-top-3{
+.cases-dist-top-3{
+    cursor: pointer;
     fill: #FF8B80;
 }
 
-path.cases-top-4{
+.cases-dist-top-4{
+    cursor: pointer;
     fill: #FFC2B0;
+}
+
+.cases-dist-top-5{
+    cursor: pointer;
+    fill:#FFEAE5;
+}
+
+.cases-dist-top-1:hover,
+.cases-dist-top-2:hover,
+.cases-dist-top-3:hover,
+.cases-dist-top-4:hover,
+.cases-dist-top-5:hover {
+    fill:#00A650;
+    stroke: #00A650;
+}
+
+#current-map .map-tab{
+    display: inline-block;
+    cursor: pointer;
+    margin: 0 50px 20px;
+    color: rgb(26, 51, 131);
+}
+
+.dist-text-style{
+    font-weight: 400;
+    font-size: 10px;
+}
+
+.district #district,
+.division #division{
+    color:cornflowerblue;
+    text-decoration: underline;
+}
+
+.dist-count{
+    display: none;
+}
+
+.active-color .dist-name{
+    display: none;
+}
+
+.active-color .dist-count{
+    display: inline;
+    font-size: 16px;
+    font-weight: 500;
+    fill: #FBB13F;
 }
 
 /* mobile device */

@@ -26,6 +26,7 @@ class PopularPlaces extends React.Component{
             
             this.setState({
                 division: divisions,
+                district: data.report.districtCases,
                 totalCases: data.report.totalCases
             })
         }).catch(function (error) {
@@ -43,7 +44,7 @@ class PopularPlaces extends React.Component{
     }
 
     render(){
-        const {totalCases, division} = this.state
+        const {totalCases, division, district} = this.state
 
         if(Object.keys(division).length == 0) return null;
         
@@ -86,24 +87,32 @@ class PopularPlaces extends React.Component{
                             </div>
                             }
                         </div>
-                        <div className="col-lg-6 mb-3 mb-lg-0">
-                        <div id="current-map">
-                            <div onClick={this.onClickChangeMap.bind(this, 'division')}>Division Map</div>
-                            <div onClick={this.onClickChangeMap.bind(this, 'district')}>District Map</div>
+                        <div className="col-lg-6 mb-3 mb-lg-0 text-center">
+                        <div id="current-map" className={this.state.map}>
+                            <span id="division" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'division')}>Division Map</span>
+                            <span id="district" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'district')}>District Map</span>
                             {
                                 this.state.map == 'division' &&
-                                <DivisionMap division={division} />
+                                <DistrictMap district={district} />
                             }
                             {
                                 this.state.map == 'district' &&
-                                <DistrictMap />
+                                <DistrictMap district={district} />
                             }
                             
                         </div>
                         </div>
                         <div className="col-lg-3 mb-3 mb-lg-0 text-center">
-                            <div className="overall-report right-sidebar-1">
-                                <h6 className="last-updated text-left">Hotline & Call Center</h6>
+                        <div className="overall-report left-sidebar">
+                                <div className="overall-active-case">
+                                    <div class="stats-box">
+                                        <h6 className="stats-info">26604</h6>
+                                        <h5 className="stats-title">Total Tests</h5>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="overall-report right-sidebar-2">
+                                <h6 className="last-updated text-left">Emergency Helpline</h6>
                                 <div className="help-hotline text-left">
                                     <div class="stats-box">
                                         <ul className="hotline-number">
@@ -125,18 +134,6 @@ class PopularPlaces extends React.Component{
                                                     <a href="tel:16263"><i className="fa fa-phone-volume"></i>&nbsp;16263</a>
                                                 </span>
                                             </li>
-                                            <li className="institute">
-                                                <span className="name">National Helpline</span>
-                                                <span className="telephone">
-                                                    <a href="tel:109"><i className="fa fa-phone-volume"></i>&nbsp;109</a>
-                                                </span>
-                                            </li>
-                                            <li className="institute">
-                                                <span className="name">Specialist Health Line</span>
-                                                <span className="telephone">
-                                                    <a href="tel:019611677777"><i className="fa fa-phone-volume"></i>&nbsp;0196116 77777</a>
-                                                </span>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -145,7 +142,7 @@ class PopularPlaces extends React.Component{
                                 <h6 className="last-updated text-left">Site Notice</h6>
                                 <div className="important-info text-left">
                                     <div class="stats-box">
-                                        <p>This site cann't ensure the correctness of information. The site depends of third party informations.</p>
+                                        <p>The site doesn't ensure correctness of infomation. This site has developed with opensource resources.</p>
                                     </div>
                                 </div>
                             </div>
