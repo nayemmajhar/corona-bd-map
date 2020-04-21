@@ -93,7 +93,7 @@ class PopularPlaces extends React.Component{
                             <span id="district" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'district')}>District Map</span>
                             {
                                 this.state.map == 'division' &&
-                                <DistrictMap district={district} />
+                                <DivisionMap division={division} />
                             }
                             {
                                 this.state.map == 'district' &&
