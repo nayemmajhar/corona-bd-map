@@ -106,7 +106,7 @@ class PopularPlaces extends React.Component{
                         <div className="overall-report left-sidebar">
                                 <div className="overall-active-case">
                                     <div class="stats-box">
-                                        <h6 className="stats-info">26604</h6>
+                                        <h6 className="stats-info">{totalCases.tests}</h6>
                                         <h5 className="stats-title">Total Tests</h5>
                                     </div>
                                 </div>

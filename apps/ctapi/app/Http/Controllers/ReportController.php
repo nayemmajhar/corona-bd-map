@@ -16,7 +16,7 @@ class ReportController extends Controller
 
         
 
-        $totalCases = DB::select('SELECT infected, recovered, death, daydate
+        $totalCases = DB::select('SELECT infected, recovered, death, daydate, tests
                                 FROM daily_report_overall as a
                                 WHERE daydate = (
                                     SELECT MAX(daydate)
