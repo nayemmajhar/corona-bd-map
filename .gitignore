@@ -3,16 +3,13 @@
 /apps/ctapi/vendor
 /apps/ctapi/database/migrations
 /fkweb/.pnp
-/apps/ctweb/build
 .pnp.js
 .idea
+.env
+/apps/ctweb/build
 
 # testing
 /apps/ctapi/coverage
-
-
-# production
-/fkweb/build
 
 #misc
 .env.local
