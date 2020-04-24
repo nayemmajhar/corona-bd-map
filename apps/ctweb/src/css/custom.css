@@ -296,14 +296,18 @@ g.cases-top-3 path{
     color: rgb(26, 51, 131);
 }
 
-.division-map,
-.district-map-box{
+.division-map{
     padding: 10px 20px 20px;
+}
+
+.district-map-box{
+    padding: 5px 20px 20px;
 }
 
 .filter-box ul{
     list-style: none;
     display: inline-block;
+    margin: 0;
 }
 
 .filter-box ul li{
