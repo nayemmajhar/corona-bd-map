@@ -87,10 +87,13 @@ class PopularPlaces extends React.Component{
                             </div>
                             }
                         </div>
-                        <div className="col-lg-6 mb-3 mb-lg-0 text-center">
+                        <div className="col-lg-6 mb-3 mb-lg-0">
                         <div id="current-map" className={this.state.map}>
-                            <span id="division" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'division')}>Division Map</span>
-                            <span id="district" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'district')}>District Map</span>
+                            <div className="map-tab-nav">
+                                <span id="division" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'division')}>Division Map</span>
+                                <span id="district" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'district')}>District Map</span>
+                            </div>
+                            <div className="map-tab-content">
                             {
                                 this.state.map == 'division' &&
                                 <DivisionMap division={division} />
@@ -99,7 +102,7 @@ class PopularPlaces extends React.Component{
                                 this.state.map == 'district' &&
                                 <DistrictMap district={district} />
                             }
-                            
+                            </div>
                         </div>
                         </div>
                         <div className="col-lg-3 mb-3 mb-lg-0 text-center">

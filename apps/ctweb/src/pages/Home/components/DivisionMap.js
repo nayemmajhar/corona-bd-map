@@ -17,6 +17,7 @@ class DivisionMap extends React.Component{
         const division = this.props.division
         const {rangpur, khulna, rajshahi, barisal, sylhet, dhaka, chattagram , mymensingh} = this.props.division
         return(
+        <div className="division-map">
             <svg version="1.1" id="BD_XXX_District_locator_map" xmlnsSvg="http://www.w3.org/2000/svg" xmlnsRdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlnsDc="http://purl.org/dc/elements/1.1/" xmlnsCc="http://creativecommons.org/ns#" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="100%" viewBox="0 0 1550.242 2149.604" enable-background="new 0 0 1550.242 2149.604" xmlSpace="preserve">
                 <g
                     id="Rangpur"
@@ -178,14 +179,14 @@ class DivisionMap extends React.Component{
                     <path id="path2173" fill="none" stroke="#000000" d="M350.714,142.298v-7.508h-3.813L350.714,142.298z"/>
                 </g>
                 <g id="text">
-                    <text fill="#003333" transform="matrix(1 0 0 1 581 636)" font-size="60">Mymensingh</text>
-                    <text fill="#003333" transform="matrix(1 0 0 1 637 1098)" font-size="60">Dhaka</text>
-                    <text fill="#003333" transform="matrix(1 0 0 1 1112 728)" font-size="60">Sylhet</text>
-                    <text fill="#003333" transform="matrix(1 0 0 1 1026 1392)" font-size="60">Chattagram</text>
-                    <text fill="#003333" transform="matrix(1 0 0 1 684 1543)" font-size="60">Barisal</text>
-                    <text fill="#003333" transform="matrix(1 0 0 1 355 1434)" font-size="60">Khulna</text>
-                    <text fill="#003333" transform="matrix(1 0 0 1 271 377)" font-size="60">Rongpur</text>
-                    <text fill="#003333" transform="matrix(1 0 0 1 250 750)" font-size="60">Rajshahi</text>
+                    <text fill="#003333" transform="matrix(1 0 0 1 581 636)" font-size="54">Mymensingh</text>
+                    <text fill="#003333" transform="matrix(1 0 0 1 637 1098)" font-size="54">Dhaka</text>
+                    <text fill="#003333" transform="matrix(1 0 0 1 1112 728)" font-size="54">Sylhet</text>
+                    <text fill="#003333" transform="matrix(1 0 0 1 1026 1392)" font-size="54">Chattagram</text>
+                    <text fill="#003333" transform="matrix(1 0 0 1 684 1543)" font-size="54">Barisal</text>
+                    <text fill="#003333" transform="matrix(1 0 0 1 355 1434)" font-size="54">Khulna</text>
+                    <text fill="#003333" transform="matrix(1 0 0 1 271 377)" font-size="54">Rongpur</text>
+                    <text fill="#003333" transform="matrix(1 0 0 1 250 750)" font-size="54">Rajshahi</text>
                 </g>
                 {
                     Object.keys(division).length !== 0 &&
@@ -194,6 +195,7 @@ class DivisionMap extends React.Component{
                     />
                 }   
             </svg>
+        </div>
         )
     }
 

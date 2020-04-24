@@ -121,7 +121,6 @@ section.place-list{
 
 #current-map{
     background: #F7F8FC;
-    padding: 20px;
     border-radius: 6px;
 }
 
@@ -277,41 +276,84 @@ g.cases-top-3 path{
 .cases-dist-top-3:hover,
 .cases-dist-top-4:hover,
 .cases-dist-top-5:hover {
-    fill:#00A650;
-    stroke: #00A650;
+    fill:#fca521;
+    stroke: #fca521;
+}
+
+.map-tab-nav{
+    padding: 0 20px;
+    border-bottom: 1px solid #E9E5E0;
 }
 
 #current-map .map-tab{
     display: inline-block;
     cursor: pointer;
-    margin: 0 50px 20px;
+    padding: 10px 20px 10px;
+    margin-right: 5px;
+}
+
+#current-map .map-tab:hover{
     color: rgb(26, 51, 131);
 }
 
-.dist-text-style{
+.division-map,
+.district-map-box{
+    padding: 10px 20px 20px;
+}
+
+.filter-box ul{
+    list-style: none;
+    display: inline-block;
+}
+
+.filter-box ul li{
+    display: inline-block;
+    margin-right: 15px;
+    cursor: pointer;
+    padding: 0;
+    font-size: 12px;
+}
+.filter-box ul li:last-child{
+    margin-right: 0;
+}
+
+.filter-box ul li:hover,
+.filter-box ul li.active{
+    border-bottom: 1px solid #E9E5E0;
+    color: rgb(26, 51, 131);
+}
+
+.dist-text{
     font-weight: 400;
     font-size: 10px;
 }
 
 .district #district,
 .division #division{
-    color:cornflowerblue;
-    text-decoration: underline;
+    background-color: #f1f1f1;
+    color: rgb(26, 51, 131);
 }
 
 .dist-count{
-    display: none;
-}
-
-.active-color .dist-name{
-    display: none;
-}
-
-.active-color .dist-count{
     display: inline;
-    font-size: 16px;
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.show-counter .dist-name{
+    display: none;
+}
+
+.show-name .dist-count{
+    display: none;
+}
+
+.active-color .dist-count,
+.active-color .dist-name{
+    display: inline;
+    font-size: 12px;
     font-weight: 500;
-    fill: #FBB13F;
+    fill: rgb(7, 110, 245);
 }
 
 .copyright-text{
