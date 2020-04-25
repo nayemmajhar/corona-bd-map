@@ -1,15 +1,42 @@
 
 body{
     font-size: 14px;
+    background: #EFF2F6;
     line-height: 1.4;
 }
 
+ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
 .navbar-light .navbar-brand{
     padding: 0px;
 }
 
+[class*='col-']{
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+}
+
 .navbar{
     padding: 12px;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.text-left{
+    text-align: left;
+}
+
+.text-right{
+    text-align: right;
+}
+
+.py-4{
+    padding: 20px 0;
 }
 
 .navbar-brand.py-1{
@@ -17,12 +44,13 @@ body{
 }
 
 .site-logo{
-    max-height: 48px;
+    max-height: 36px;
 }
 
+
 .header{
-    padding: 7px 0;
-    background: #F7F8FC;
+    padding: 8px 0;
+    background: #FFFFFF;
 }
 
 .header .navbar-brand.py-1{
@@ -35,57 +63,10 @@ footer .navbar-brand.py-1{
     font-size: 16px;
 }
 
-.bc-image-1{
-    background-image: url(../img/bannerSVG.svg);
-    width: 100%;
-    opacity: 1;
-    transform: translate3d(0px, 0px, 0px);
-    transition-duration: 2000ms;
+footer .site-logo{
+    max-height: 48px;
 }
 
-.swiper-wrapper.dark-overlay{
-    transition-duration: 2000ms;
-}
-
-.card-img-top{
-    max-height: 240px;
-}
-
-.leaflet-container{
-    height: calc(600px);
-}
-
-.tour-grid-item{
-    background-color: #FFF;
-    border-radius: 3px;
-    box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.16);
-}
-
-.tour-grid-item:hover{
-    box-shadow: 0px 2px 5px -1px rgba(0, 0, 0, 0.3);
-}
-
-.tour-grid-item a{
-    color: #666;
-    font-weight: 400;
-}
-
-.tour-grid-item a:hover{
-    text-decoration: none;
-}
-
-.tour-grid-item img{
-    border-radius: 3px 3px 0 0;
-}
-
-.tour-grid-item .content{
-    text-align: left;
-    padding: 15px;
-}
-
-.tour-grid-item .content p{
-    margin-bottom: 0px;
-}
 
 footer .bg-gray-200 {
     background: #34495E!important;
@@ -103,24 +84,53 @@ footer .input-group-append .border-left-0{
     border-color: #f1f1f1!important;
 }
 
-section.tour-list .btn-tour,
-section.place-list .btn-place{
+.new-stats{
+    display: block;
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+}
+
+.new-stats li{
     display: inline-block;
-    max-width: 200px;
-    margin-top: 10px;
+    width: 18%;
+    vertical-align: middle;
 }
 
-section.place-list{
-    background: #e9e5e0!important;
+.new-stats li i{
+    font-size: 10px;
+    margin-right: 5px;
 }
 
-.overall-report {
-    background: #F7F8FC;
+.new-stats li span{
+    font-size: 14px;
+}
+
+.new-stats li.infected i{
+    color: #fbb140;
+}
+
+.new-stats li.cured i{
+    color: #2dce89;
+}
+
+.new-stats li.death i{
+    color: #f5365c;
+}
+
+.stat-section{
+    margin-top: 1px;
+    background: #ffffff;
+}
+
+.overall-report>div{
+    background: #ffffff;
     border-radius: 6px;
+    margin-bottom: 12px;
 }
 
 #current-map{
-    background: #F7F8FC;
+    background: #ffffff;
     border-radius: 6px;
 }
 
@@ -128,14 +138,13 @@ section.place-list{
     font-size: 14px;
     font-weight: 500;
     padding: 10px 20px;
-    border-bottom: 1px solid #E9E5E0;
+    border-bottom: 1px solid #EFF2F6;
     color: #AEAED5;
     margin-bottom: 0;
 }
 
 .stats-box{
     padding: 30px 20px;
-    border-bottom: 1px solid #E9E5E0;
     align-items: center;
 }
 
@@ -179,7 +188,7 @@ section.place-list{
 }
 
 .hotline-number .institute{
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .hotline-number .institute:last-child{
@@ -199,7 +208,7 @@ section.place-list{
 }
 
 .hotline-number .institute .telephone a{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
     text-decoration: none;
     color: #00A650;
@@ -282,14 +291,17 @@ g.cases-top-3 path{
 
 .map-tab-nav{
     padding: 0 20px;
-    border-bottom: 1px solid #E9E5E0;
+    border-bottom: 1px solid #EFF2F6;
 }
 
 #current-map .map-tab{
     display: inline-block;
     cursor: pointer;
-    padding: 10px 20px 10px;
+    padding: 8px 8px 8px;
+    margin-left: 15px;
+    margin-bottom: -1px;
     margin-right: 5px;
+    border-bottom: 1px solid transparent;
 }
 
 #current-map .map-tab:hover{
@@ -323,7 +335,7 @@ g.cases-top-3 path{
 
 .filter-box ul li:hover,
 .filter-box ul li.active{
-    border-bottom: 1px solid #E9E5E0;
+    border-bottom: 1px solid rgb(33, 73, 204);
     color: rgb(26, 51, 131);
 }
 
@@ -334,8 +346,8 @@ g.cases-top-3 path{
 
 .district #district,
 .division #division{
-    background-color: #f1f1f1;
-    color: rgb(26, 51, 131);
+    border-bottom: 1px solid rgb(33, 73, 204);
+    color: rgb(33, 73, 204);
 }
 
 .dist-count{
@@ -363,6 +375,48 @@ g.cases-top-3 path{
 .copyright-text{
     line-height: 48px;
 }
+
+
+.mini-division-counter li{
+    display: inline-block;
+    width: 100%;
+    font-weight: 300;
+    font-size: 13px;
+}
+
+.mini-division-counter li:hover{
+    background-color: #EFF2F6;
+}
+
+.mini-division-counter li:first-child:hover{
+    background-color: #ffffff;
+}
+
+.overall-report .last-updated.division-info{
+    color: #fbb140;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+}
+
+.mini-division-counter li [class*='name']{
+    float: left;
+    display: inline-block;
+}
+
+.mini-division-counter li [class*='infected']{
+    float: right;
+    display: inline-block;
+    font-weight: 400;
+}
+
+.mini-division-counter li .name-h,
+.mini-division-counter li .infected-h{
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+
+
 
 /* mobile device */
 @media (max-width: 767.98px) {

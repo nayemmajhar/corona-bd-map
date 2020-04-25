@@ -46,113 +46,148 @@ class PopularPlaces extends React.Component{
     render(){
         const {totalCases, division, district} = this.state
 
+        const helpline = [
+            {name: 'National Call Center', tel: '333'},
+            {name: 'Health Portal', tel: '16263'},
+            {name: 'IEDCR', tel: '10655'}
+        ]
+
         if(Object.keys(division).length == 0) return null;
         
         return(
-            <section className="py-4 place-list">
-                
-                <div className="container-fluid">
-                    <div className="row">
-                        <div className="col-lg-3 mb-3 mb-lg-0 text-center">
-                            {
-                            Object.keys(totalCases).length !== 0 &&
-                            <div className="overall-report left-sidebar">
-                                <h6 className="last-updated text-left">Last update: {totalCases.daydate}</h6>
-                                <div className="overall-active-case">
-                                    <div class="stats-box">
-                                        <h6 className="stats-info">
-                                            {totalCases.infected - totalCases.recovered - totalCases.death}
-                                        </h6>
-                                        <h5 className="stats-title">Active Cases</h5>
-                                    </div>
-                                </div>
-                                <div className="overall-infected">
-                                    <div class="stats-box">
-                                        <h6 className="stats-info">{totalCases.infected}</h6>
-                                        <h5 className="stats-title">Number of Cases</h5>
-                                    </div>
-                                </div>
-                                <div className="overall-recovered">
-                                    <div class="stats-box">
-                                        <h6 className="stats-info">{totalCases.recovered}</h6>
-                                        <h5 className="stats-title">Official Cured</h5>
-                                    </div>
-                                </div>
-                                <div className="overall-death">
-                                    <div class="stats-box">
-                                        <h6 className="stats-info">{totalCases.death}</h6>
-                                        <h5 className="stats-title">Official Deaths</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            }
-                        </div>
-                        <div className="col-lg-6 mb-3 mb-lg-0">
-                        <div id="current-map" className={this.state.map}>
-                            <div className="map-tab-nav">
-                                <span id="division" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'division')}>Division Map</span>
-                                <span id="district" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'district')}>District Map</span>
-                            </div>
-                            <div className="map-tab-content">
-                            {
-                                this.state.map == 'division' &&
-                                <DivisionMap division={division} />
-                            }
-                            {
-                                this.state.map == 'district' &&
-                                <DistrictMap district={district} />
-                            }
+            <div>
+                <section className="stat-section">
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-lg-12 mb-3 mb-lg-0">
+                                <ul className="new-stats text-center">
+                                    <li>Today's Cases:</li>
+                                    <li className="infected"><i className="fa fa-circle"></i> <span>Infected:  122</span></li>
+                                    <li className="cured"><i className="fa fa-circle"></i> <span>Recovred:  12312</span></li>
+                                    <li className="death"><i className="fa fa-circle"></i> <span>Death:  23123</span></li>
+                                </ul>
                             </div>
                         </div>
-                        </div>
-                        <div className="col-lg-3 mb-3 mb-lg-0 text-center">
-                        <div className="overall-report left-sidebar">
-                                <div className="overall-active-case">
-                                    <div class="stats-box">
-                                        <h6 className="stats-info">{totalCases.tests}</h6>
-                                        <h5 className="stats-title">Total Tests</h5>
+                    </div>
+                </section>
+            
+                <section className="py-4 place-list">
+                    
+                    <div className="container-fluid">
+                        <div className="row">
+                            <div className="col-lg-3 mb-3 mb-lg-0 text-center">
+                                {
+                                Object.keys(totalCases).length !== 0 &&
+                                <div className="overall-report left-sidebar">
+                                    <div className="overall-infected">
+                                        <div class="stats-box">
+                                            <h6 className="stats-info">{totalCases.infected}</h6>
+                                            <h5 className="stats-title">Number of Cases</h5>
+                                        </div>
+                                    </div>
+                                    <div className="overall-recovered">
+                                        <div class="stats-box">
+                                            <h6 className="stats-info">{totalCases.recovered}</h6>
+                                            <h5 className="stats-title">Official Cured</h5>
+                                        </div>
+                                    </div>
+                                    <div className="overall-death">
+                                        <div class="stats-box">
+                                            <h6 className="stats-info">{totalCases.death}</h6>
+                                            <h5 className="stats-title">Official Deaths</h5>
+                                        </div>
+                                    </div>
+                                    <div className="overall-tests">
+                                        <div class="stats-box">
+                                            <h6 className="stats-info">{totalCases.tests}</h6>
+                                            <h5 className="stats-title">Total Tests</h5>
+                                        </div>
+                                    </div>
+                                    <div className="help-hotline text-left">
+                                        <h6 className="last-updated text-left">Emergency Helpline</h6>
+                                        <div class="stats-box">
+                                            <ul className="hotline-number">
+                                                {
+                                                    helpline.map((item,index) => {
+                                                        return(
+                                                            <li key={index} className="institute">
+                                                                <span className="name">{item.name}</span>
+                                                                <span className="telephone">
+                                                                    <a href={'tel:'+item.tel}><i className="fa fa-phone-volume"></i>&nbsp;{item.tel}</a>
+                                                                </span>
+                                                            </li>
+                                                        )
+                                                    })
+                                                }
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
+                                }
                             </div>
-                            <div className="overall-report right-sidebar-2">
-                                <h6 className="last-updated text-left">Emergency Helpline</h6>
-                                <div className="help-hotline text-left">
-                                    <div class="stats-box">
-                                        <ul className="hotline-number">
-                                            <li className="institute">
-                                                <span className="name">National Call Center</span>
-                                                <span className="telephone">
-                                                    <a href="tel:333"><i className="fa fa-phone-volume"></i>&nbsp;333</a>
-                                                </span>
-                                            </li>
-                                            <li className="institute">
-                                                <span className="name">IEDCR</span>
-                                                <span className="telephone">
-                                                    <a href="tel:10655"><i className="fa fa-phone-volume"></i>&nbsp;10655</a>
-                                                </span>
-                                            </li>
-                                            <li className="institute">
-                                                <span className="name">Health Portal</span>
-                                                <span className="telephone">
-                                                    <a href="tel:16263"><i className="fa fa-phone-volume"></i>&nbsp;16263</a>
-                                                </span>
-                                            </li>
-                                        </ul>
-                                    </div>
+                            <div className="col-lg-6 mb-3 mb-lg-0">
+                            <div id="current-map" className={this.state.map}>
+                                <div className="map-tab-nav">
+                                    <span id="division" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'division')}>Division Map</span>
+                                    <span id="district" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'district')}>District Map</span>
+                                </div>
+                                <div className="map-tab-content">
+                                {
+                                    this.state.map == 'division' &&
+                                    <DivisionMap division={division} />
+                                }
+                                {
+                                    this.state.map == 'district' &&
+                                    <DistrictMap district={district} />
+                                }
                                 </div>
                             </div>
-                            <div className="overall-report right-sidebar-2">
-                                <h6 className="last-updated text-left">Site Notice</h6>
-                                <div className="important-info text-left">
-                                    <div class="stats-box">
-                                        <p>The site doesn't ensure correctness of infomation. This site has developed with opensource resources.</p>
+                            </div>
+                            <div className="col-lg-3 mb-3 mb-lg-0 text-center">
+                                <div className="overall-report">
+                                    <div className="overall-active-case">
+                                        <div class="stats-box">
+                                            <h6 className="stats-info">
+                                                {totalCases.infected - totalCases.recovered - totalCases.death}
+                                            </h6>
+                                            <h5 className="stats-title">Active Cases</h5>
+                                        </div>
+                                    </div>
+                                    <div className="overall-active-case">
+                                        <h6 className="last-updated division-info text-left">Covid19 Cases in Division</h6>
+                                        <div class="stats-box">
+                                            <ul className="mini-division-counter">
+                                                <li>
+                                                    <span className="name-h">Name</span>
+                                                    <span className="infected-h">Infected</span>
+                                                </li>
+                                                {
+                                                    Object.keys(division).map((key) =>{
+                                                        return(
+                                                            <li>
+                                                                <span className="name">{division[key].title}</span>
+                                                                <span className="infected">{division[key].infected}</span>
+                                                            </li>
+                                                        )
+                                                    })
+                                                }
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="overall-report right-sidebar-2">
+                                    <h6 className="last-updated text-left">Site Notice</h6>
+                                    <div className="important-info text-left">
+                                        <div class="stats-box">
+                                            <p>The site doesn't ensure correctness of infomation. This site has developed with opensource resources.</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
+            </div>
         )
     }
 }

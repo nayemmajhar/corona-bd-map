@@ -6,7 +6,7 @@ class Header extends React.Component{
         return( 
             <header className="header">
                 <div className="container-fluid">
-                    <div className="row">
+                    <div className="row text-center">
                         <div className="col-lg-12 mb-12 mb-lg-0">
                             <Logo />
                         </div>
