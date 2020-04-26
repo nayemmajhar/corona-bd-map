@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom'
 import DistrictMap from './DistrictMap'
 import DivisionMap from './DivisionMap'
 import ctKielApi from '../../../helpers/ctKielApi'
+import DivHomeChart from './charts/DivHomeChart'
+import CountryGraphWrap from './CountryGraphWrap'
 import axios from 'axios'
 
 
@@ -12,7 +14,7 @@ class PopularPlaces extends React.Component{
         this.state = {
             division:{},
             totalCases: {},
-            map:'division'
+            map:'district'
         };
     }
 
@@ -23,11 +25,12 @@ class PopularPlaces extends React.Component{
         .then((data) => {
             let divisions = {}
             data.report.divisionCases.map((item)=> divisions[item.title.toLowerCase()] = item )
-            
+
             this.setState({
                 division: divisions,
                 district: data.report.districtCases,
-                totalCases: data.report.totalCases
+                totalReport: data.report.totalCases,
+                totalCases: data.report.totalCases[0]
             })
         }).catch(function (error) {
             console.log(error);
@@ -44,7 +47,7 @@ class PopularPlaces extends React.Component{
     }
 
     render(){
-        const {totalCases, division, district} = this.state
+        const {totalCases, totalReport, division, district} = this.state
 
         const helpline = [
             {name: 'National Call Center', tel: '333'},
@@ -62,9 +65,10 @@ class PopularPlaces extends React.Component{
                             <div className="col-lg-12 mb-3 mb-lg-0">
                                 <ul className="new-stats text-center">
                                     <li>Today's Cases:</li>
-                                    <li className="infected"><i className="fa fa-circle"></i> <span>Infected:  122</span></li>
-                                    <li className="cured"><i className="fa fa-circle"></i> <span>Recovred:  12312</span></li>
-                                    <li className="death"><i className="fa fa-circle"></i> <span>Death:  23123</span></li>
+                                    <li className="infected"><i className="fa fa-circle"></i> <span>Infected: &nbsp;{totalCases.newinfected}</span></li>
+                                    <li className="cured"><i className="fa fa-circle"></i> <span>Recovred: &nbsp;{totalCases.newrecovered}</span></li>
+                                    <li className="death"><i className="fa fa-circle"></i> <span>Death: &nbsp;{totalCases.newdeath}</span></li>
+                                    <li className="info"><i className="fa fa-circle"></i> <span>Tests: &nbsp;{totalCases.newtests}</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -128,8 +132,8 @@ class PopularPlaces extends React.Component{
                             <div className="col-lg-6 mb-3 mb-lg-0">
                             <div id="current-map" className={this.state.map}>
                                 <div className="map-tab-nav">
-                                    <span id="division" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'division')}>Division Map</span>
                                     <span id="district" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'district')}>District Map</span>
+                                    <span id="division" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'division')}>Division Map</span>
                                 </div>
                                 <div className="map-tab-content">
                                 {
@@ -154,7 +158,7 @@ class PopularPlaces extends React.Component{
                                         </div>
                                     </div>
                                     <div className="overall-active-case">
-                                        <h6 className="last-updated division-info text-left">Covid19 Cases in Division</h6>
+                                        <h6 className="last-updated division-info text-left">Covid19 Cases by Division</h6>
                                         <div class="stats-box">
                                             <ul className="mini-division-counter">
                                                 <li>
@@ -174,12 +178,10 @@ class PopularPlaces extends React.Component{
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="overall-report right-sidebar-2">
-                                    <h6 className="last-updated text-left">Site Notice</h6>
-                                    <div className="important-info text-left">
+                                    <div className="pie-map text-left">
+                                        <h6 className="last-updated text-left">Division Charts</h6>
                                         <div class="stats-box">
-                                            <p>The site doesn't ensure correctness of infomation. This site has developed with opensource resources.</p>
+                                            <DivHomeChart division={division} />
                                         </div>
                                     </div>
                                 </div>
@@ -187,6 +189,7 @@ class PopularPlaces extends React.Component{
                         </div>
                     </div>
                 </section>
+                <CountryGraphWrap totalReport={totalReport} />
             </div>
         )
     }

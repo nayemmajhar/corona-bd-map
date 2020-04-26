@@ -84,6 +84,45 @@ footer .input-group-append .border-left-0{
     border-color: #f1f1f1!important;
 }
 
+.section-header{
+    background-color: #ffffff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.section-header p{
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.section-body{
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.custom-tooltip p{
+    margin-bottom: 1px;
+}
+
+.graph-box{
+    background: #ffffff;
+    border-radius: 6px;
+}
+
+.stats-graph{
+    padding: 15px 10px;
+    margin-bottom: 10px;
+}
+
+.graph-box .graph-title{
+    font-size: 14px;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+    padding: 10px 20px;
+    border-bottom: 1px solid #EFF2F6;
+    margin-bottom: 10px;
+}
+
 .new-stats{
     display: block;
     list-style: none;
@@ -93,8 +132,12 @@ footer .input-group-append .border-left-0{
 
 .new-stats li{
     display: inline-block;
-    width: 18%;
+    width: 12%;
     vertical-align: middle;
+}
+
+.new-stats li:first-child{
+    width: 20%;
 }
 
 .new-stats li i{
@@ -107,15 +150,19 @@ footer .input-group-append .border-left-0{
 }
 
 .new-stats li.infected i{
-    color: #fbb140;
+    color: #ffc107;
 }
 
 .new-stats li.cured i{
-    color: #2dce89;
+    color: #28a745;
 }
 
 .new-stats li.death i{
-    color: #f5365c;
+    color: #dc3545;
+}
+
+.new-stats li.info i{
+    color: #17a2b8;
 }
 
 .stat-section{
@@ -127,6 +174,10 @@ footer .input-group-append .border-left-0{
     background: #ffffff;
     border-radius: 6px;
     margin-bottom: 12px;
+}
+
+.overall-report>div:last-child{
+    margin-bottom: 0;
 }
 
 #current-map{
@@ -166,15 +217,24 @@ footer .input-group-append .border-left-0{
 }
 
 .overall-infected .stats-box .stats-info{
-    color: #fbb140;
+    color: #ffc107;
 }
 
 .overall-recovered .stats-box .stats-info{
-    color: #2dce89;
+    color: #28a745;
 }
 
 .overall-death .stats-box .stats-info{
-    color: #f5365c;
+    color: #dc3545;
+}
+
+.overall-tests .stats-box .stats-info{
+    color: #17a2b8;
+}
+
+.pie-map .stats-box{
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .help-hotline .stats-box{
@@ -328,6 +388,7 @@ g.cases-top-3 path{
     cursor: pointer;
     padding: 0;
     font-size: 12px;
+    text-transform: capitalize;
 }
 .filter-box ul li:last-child{
     margin-right: 0;
