@@ -5,6 +5,7 @@ import DivisionMap from './DivisionMap'
 import ctKielApi from '../../../helpers/ctKielApi'
 import DivHomeChart from './charts/DivHomeChart'
 import CountryGraphWrap from './CountryGraphWrap'
+import DivisionGraphWrap from './DivisionGraphWrap'
 import StatsTable from './StatsTable'
 import axios from 'axios'
 
@@ -15,17 +16,19 @@ class PopularPlaces extends React.Component{
         this.state = {
             division:{},
             totalCases: {},
-            map:'district'
+            map:'division',
+            stats: ''
         };
+
+        this.divref = React.createRef();
     }
 
     componentDidMount() {
-    
+
         const url = ctKielApi.URL + '/reports'
         axios.get(url).then(response => response.data)
         .then((data) => {
-            console.log(data.report.divisionCases);
-            
+
             let divisions = {}
             data.report.divisionCases.map((item)=> divisions[item.title.toLowerCase()] = item )
 
@@ -51,11 +54,37 @@ class PopularPlaces extends React.Component{
     }
 
     onClickChangeMap(name){
-        this.setState({ map: name })
+        this.setState({
+            map: name,
+            stats : ''
+        })
+    }
+
+    onClickOverview(areaName, area){
+
+        const url = ctKielApi.URL + '/reports/'+ area + '/' + areaName
+
+        axios.get(url).then(response => response.data)
+        .then((data) => {
+            this.setState({
+                stats: area,
+                statsReport : {
+                    name: areaName,
+                    report: data.report
+                }
+            })
+        }).catch(function (error) {
+            console.log(error);
+        })
+        
+        this.divref.current.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start',
+          })
     }
 
     render(){
-        const {totalCases, totalReport, division, district, divisionCases, districtCases} = this.state
+        const {totalCases, totalReport, division, district, divisionCases, districtCases, statsReport} = this.state
 
         const helpline = [
             {name: 'National Call Center', tel: '333'},
@@ -92,32 +121,32 @@ class PopularPlaces extends React.Component{
                                 Object.keys(totalCases).length !== 0 &&
                                 <div className="overall-report left-sidebar">
                                     <div className="overall-infected">
-                                        <div class="stats-box">
+                                        <div className="stats-box">
                                             <h6 className="stats-info">{totalCases.infected}</h6>
                                             <h5 className="stats-title">Number of Cases</h5>
                                         </div>
                                     </div>
                                     <div className="overall-recovered">
-                                        <div class="stats-box">
+                                        <div className="stats-box">
                                             <h6 className="stats-info">{totalCases.recovered}</h6>
                                             <h5 className="stats-title">Official Cured</h5>
                                         </div>
                                     </div>
                                     <div className="overall-death">
-                                        <div class="stats-box">
+                                        <div className="stats-box">
                                             <h6 className="stats-info">{totalCases.death}</h6>
                                             <h5 className="stats-title">Official Deaths</h5>
                                         </div>
                                     </div>
                                     <div className="overall-tests">
-                                        <div class="stats-box">
+                                        <div className="stats-box">
                                             <h6 className="stats-info">{totalCases.tests}</h6>
                                             <h5 className="stats-title">Total Tests</h5>
                                         </div>
                                     </div>
                                     <div className="help-hotline text-left">
                                         <h6 className="last-updated text-left">Emergency Helpline</h6>
-                                        <div class="stats-box">
+                                        <div className="stats-box">
                                             <ul className="hotline-number">
                                                 {
                                                     helpline.map((item,index) => {
@@ -147,11 +176,11 @@ class PopularPlaces extends React.Component{
                                 <div className="map-tab-content">
                                 {
                                     this.state.map == 'division' &&
-                                    <DivisionMap division={division} />
+                                    <DivisionMap division={division} onClickOverview={this.onClickOverview.bind(this)} />
                                 }
                                 {
                                     this.state.map == 'district' &&
-                                    <DistrictMap district={district} />
+                                    <DistrictMap district={district} onClickOverview={this.onClickOverview.bind(this)}/>
                                 }
                                 {
                                     this.state.map == 'stats' &&
@@ -174,7 +203,7 @@ class PopularPlaces extends React.Component{
                             <div className="col-lg-3 mb-3 mb-lg-0 text-center">
                                 <div className="overall-report">
                                     <div className="overall-active-case">
-                                        <div class="stats-box">
+                                        <div className="stats-box">
                                             <h6 className="stats-info">
                                                 {totalCases.infected - totalCases.recovered - totalCases.death}
                                             </h6>
@@ -183,16 +212,16 @@ class PopularPlaces extends React.Component{
                                     </div>
                                     <div className="overall-active-case">
                                         <h6 className="last-updated division-info text-left">Covid19 Cases by Division</h6>
-                                        <div class="stats-box">
+                                        <div className="stats-box">
                                             <ul className="mini-division-counter">
                                                 <li>
                                                     <span className="name-h">Name</span>
                                                     <span className="infected-h">Infected</span>
                                                 </li>
                                                 {
-                                                    Object.keys(division).map((key) =>{
+                                                    Object.keys(division).map((key,index) =>{
                                                         return(
-                                                            <li>
+                                                            <li key={index}>
                                                                 <span className="name">{division[key].title}</span>
                                                                 <span className="infected">{division[key].infected}</span>
                                                             </li>
@@ -204,7 +233,7 @@ class PopularPlaces extends React.Component{
                                     </div>
                                     <div className="pie-map text-left">
                                         <h6 className="last-updated text-left">Division Charts</h6>
-                                        <div class="stats-box">
+                                        <div className="stats-box">
                                             <DivHomeChart division={division} />
                                         </div>
                                     </div>
@@ -213,7 +242,14 @@ class PopularPlaces extends React.Component{
                         </div>
                     </div>
                 </section>
+                <div ref={this.divref}>
+                {
+                    this.state.stats === 'division' &&
+                    <DivisionGraphWrap name={statsReport.name} reports={ statsReport.report } />
+                }
+                </div>
                 <CountryGraphWrap totalReport={totalReport} />
+                
             </div>
         )
     }

@@ -29,6 +29,7 @@ class DivisionMapNumber extends React.Component{
                     divisions.map((item,index)=>{
                         return(
                             <text
+                                key={index}
                                 id={item.name}
                                 x={item.x}
                                 y={item.y}

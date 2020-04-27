@@ -127,7 +127,12 @@ class DistrictMap extends React.Component{
                 districtList.map((item)=>{
                     const nameLower = item.name.toLocaleLowerCase();
                     return(
-                        <text transform={item.transform} className={item.name + textclass }>
+                        <text
+                            transform = { item.transform }
+                            className = { item.name + textclass }
+                            onMouseOver = { this.onMOverDistText.bind(this, item.name) }
+                            onMouseOut = { this.onMOutDistText.bind(this, item.name) }
+                        >
                             <tspan className="dist-name">{item.name}</tspan>
                             <tspan x="5px" dy="1em" className="dist-count">{district[nameLower].infected}</tspan>
                         </text>
@@ -139,7 +144,17 @@ class DistrictMap extends React.Component{
     </div>
         )
     }
-    
+
+    onMOverDistText(textId){
+        let element = document.getElementsByClassName(textId)
+        element[0].classList.add('active-color')
+        
+    }
+
+    onMOutDistText(textId){
+        let element = document.getElementsByClassName(textId)
+        element[0].classList.remove('active-color')
+    }
 }
 
 export default DistrictMap

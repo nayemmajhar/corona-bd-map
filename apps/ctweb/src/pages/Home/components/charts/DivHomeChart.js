@@ -1,5 +1,5 @@
 import React from 'react';
-import {ResponsiveContainer, PieChart, Pie, Tooltip, Cell} from 'recharts'
+import {ResponsiveContainer, PieChart, Legend, Pie, Tooltip, Cell} from 'recharts'
 
 const COLORS = ['#003f5c',
                 '#2f4b7c',
@@ -40,6 +40,7 @@ class DivHomeChart extends React.Component{
                         
                         </Pie>
                         <Tooltip/>
+                        <Legend />
                     </PieChart>
                 </ResponsiveContainer>
                 

@@ -6,8 +6,7 @@ class CountryGraphWrap extends Component{
 
     render(){
         const { totalReport } = this.props
-        let dataReport = totalReport.reverse()
-
+        let dataReport = [].concat(totalReport).reverse()
         return(
             <section className="contry-stats">
                 <div className="container-fluid">

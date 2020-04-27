@@ -22,4 +22,5 @@ $router->group(
         'prefix' => 'v1/reports'
     ], function () use ($router) {
         $router->get('/',  ['uses' => 'ReportController@showAllReports']);
+        $router->get('division/{name}', ['uses' => 'ReportController@showDivisionOverview']);
 });

@@ -31,7 +31,6 @@ const Styles = styled.div`
 
     td {
         padding:5px;
-        font-size:12px;
     }
   }
 
@@ -48,7 +47,7 @@ const Styles = styled.div`
   
 `
 
-function Table({ columns, data }) {
+function Table({ columns, data, }) {
   const {
     getTableProps,
     getTableBodyProps,
@@ -73,7 +72,7 @@ function Table({ columns, data }) {
         data,
         initialState: { 
             pageIndex: 0,
-            pageSize: 25
+            pageSize: 20
         },
     },
     useSortBy,
@@ -111,7 +110,7 @@ function Table({ columns, data }) {
         </tbody>
       </table>
       {
-          data.length > 9 &&
+          data.length > 19 &&
           <div className="pagination">
             <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
             {'<<'}
@@ -137,7 +136,7 @@ function Table({ columns, data }) {
                 setPageSize(Number(e.target.value))
             }}
             >
-            {[25, 50, 64].map(pageSize => (
+            {[20, 40, 64].map(pageSize => (
                 <option key={pageSize} value={pageSize}>
                 Show {pageSize}
                 </option>
