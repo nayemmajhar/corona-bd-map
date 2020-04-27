@@ -18,10 +18,10 @@ class CovidAreaChart extends PureComponent{
                             dataKey="daydate"
                             interval={0} tick={{ angle: -25 }}
                             textAnchor="end"
-                            label={{ value: "Date of last "+ data.length +" days", position: "insideBottomCenter", dy: 35}} 
+                            label={{ value: "Date of last "+ data.length +" days", position: "centerBottom", dy: 35}} 
                         />
                         <YAxis
-                            label={{ value: yText, position: "insideLeftCenter", angle: -90,   dx: -35}}
+                            label={{ value: yText, angle: -90,   dx: -35}}
                         />
                         <Tooltip content={<CustomTooltip text={tText} tolColor={tColor} />}/>
                         <Area fillOpacity='.7' dot={{ stroke: '#2F4B7C', strokeWidth: 2 }} type="monotone" dataKey="count" fill={color} stroke="#2F4B7C" />

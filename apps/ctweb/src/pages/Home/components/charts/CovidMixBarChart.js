@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { ResponsiveContainer, BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
+import { ResponsiveContainer, BarChart, Bar, Legend, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 class CovidMixBarChart extends PureComponent{
 
@@ -18,10 +18,11 @@ class CovidMixBarChart extends PureComponent{
                             dataKey="daydate"
                             interval={0} tick={{ angle: -25 }}
                             textAnchor="end"
-                            label={{ value: "Date of last "+ data.length +" days", position: "insideBottomCenter", dy: 35}} 
+                            label={{ value: "Date of last "+ data.length +" days", position: "centerBottom", dy: 35}} 
                         />
-                        <YAxis label={{ value: yText, position: "insideLeftCenter", angle: -90,   dx: -25}} />
+                        <YAxis label={{ value: yText, angle: -90,   dx: -25}} />
 						<Tooltip />
+						<Legend verticalAlign="top"/>
 						<Bar barSize={20} fillOpacity='.8' dataKey="death" stackId="a" fill={color2} />
 						<Bar barSize={20} fillOpacity='.8' dataKey="cured" stackId="a" fill={color1} />
 					</BarChart>

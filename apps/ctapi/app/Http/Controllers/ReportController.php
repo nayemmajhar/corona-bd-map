@@ -14,31 +14,25 @@ class ReportController extends Controller
 
         $reports = array();
 
+        $divisionCases = DB::select('SELECT divisions.title as title, daydate, infected,
+                                    infected - lag(infected,1,0) OVER (PARTITION BY division_id ORDER BY daydate) AS newinfected
+                                    FROM daily_report_division
+                                    LEFT JOIN divisions ON divisions.id = daily_report_division.division_id
+                                    ORDER BY daydate DESC LIMIT 8');
+
+        $totalCases = DB::select('SELECT daydate, infected, recovered, death, tests,
+                                    infected - lag(infected,1,0) OVER (ORDER BY daydate) AS newinfected,
+                                    recovered - lag(recovered,1,0) OVER (ORDER BY daydate) AS newrecovered,
+                                    death - lag(death,1,0) OVER (ORDER BY daydate) AS newdeath,
+                                    tests - lag(tests,1,0) OVER (ORDER BY daydate) AS newtests
+                                    FROM daily_report_overall ORDER BY daydate DESC LIMIT 8');
+
+        $districtCases = DB::select('SELECT districts.title as title, daydate, infected,
+                                    infected - lag(infected,1,0) OVER (PARTITION BY district_id ORDER BY daydate) AS newinfected
+                                    FROM daily_report_districts
+                                    LEFT JOIN districts ON districts.id = daily_report_districts.district_id
+                                    ORDER BY daydate DESC LIMIT 64');
         
-
-        $totalCases = DB::select('SELECT infected, recovered, death, daydate, tests
-                                FROM daily_report_overall as a
-                                WHERE daydate = (
-                                    SELECT MAX(daydate)
-                                    FROM daily_report_overall as b
-                                )')[0];
-
-        $divisionCases = DB::select('SELECT a.infected, a.recovered, a.death, a.daydate, b.title
-                                FROM daily_report_division as a
-                                LEFT JOIN divisions as b ON b.id = a.division_id
-                                WHERE a.daydate = (
-                                    SELECT MAX(daydate)
-                                    FROM daily_report_division as c
-                                )');
-
-        $districtCases = DB::select('SELECT a.infected, a.recovered, a.death, a.daydate, b.title
-                                FROM daily_report_districts as a
-                                LEFT JOIN districts as b ON b.id = a.district_id
-                                WHERE a.daydate = (
-                                    SELECT MAX(daydate)
-                                    FROM daily_report_districts as c
-                                )');
-
         foreach ($divisionCases as $key => $item) {
             if($item->infected > 1000){
                 $divisionCases[$key]->colorClass = 'cases-top-1';
@@ -49,27 +43,23 @@ class ReportController extends Controller
             }
         }
 
-        $districtCasesObj = array();
-
         foreach ($districtCases as $key => $item) {
-            $district = strtolower($item->title);
-            $districtCasesObj[$district] = $item;
             if($item->infected > 300){
-                $districtCasesObj[$district]->colorClass = 'cases-dist-top-1';
+                $districtCases[$key]->colorClass = 'cases-dist-top-1';
             } elseif( 300 >= $item->infected && $item->infected > 100){
-                $districtCasesObj[$district]->colorClass = 'cases-dist-top-2';
+                $districtCases[$key]->colorClass = 'cases-dist-top-2';
             } elseif( 100 >= $item->infected && $item->infected > 30){
-                $districtCasesObj[$district]->colorClass = 'cases-dist-top-3';
+                $districtCases[$key]->colorClass = 'cases-dist-top-3';
             } elseif( $item->infected == 0){
-                $districtCasesObj[$district]->colorClass = 'cases-dist-top-5';
+                $districtCases[$key]->colorClass = 'cases-dist-top-5';
             } else {
-                $districtCasesObj[$district]->colorClass = 'cases-dist-top-4';
+                $districtCases[$key]->colorClass = 'cases-dist-top-4';
             }
         }
 
         $reports['totalCases'] = $totalCases;
         $reports['divisionCases'] = $divisionCases;
-        $reports['districtCases'] = $districtCasesObj;
+        $reports['districtCases'] = $districtCases;
 
         return response()->json([
             'report' => $reports,

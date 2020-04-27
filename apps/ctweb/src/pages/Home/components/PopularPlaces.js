@@ -5,6 +5,7 @@ import DivisionMap from './DivisionMap'
 import ctKielApi from '../../../helpers/ctKielApi'
 import DivHomeChart from './charts/DivHomeChart'
 import CountryGraphWrap from './CountryGraphWrap'
+import StatsTable from './StatsTable'
 import axios from 'axios'
 
 
@@ -23,14 +24,21 @@ class PopularPlaces extends React.Component{
         const url = ctKielApi.URL + '/reports'
         axios.get(url).then(response => response.data)
         .then((data) => {
+            console.log(data.report.divisionCases);
+            
             let divisions = {}
             data.report.divisionCases.map((item)=> divisions[item.title.toLowerCase()] = item )
 
+            let districts = {}
+            data.report.districtCases.map((item)=> districts[item.title.toLowerCase()] = item )
+
             this.setState({
                 division: divisions,
-                district: data.report.districtCases,
+                district: districts,
                 totalReport: data.report.totalCases,
-                totalCases: data.report.totalCases[0]
+                totalCases: data.report.totalCases[0],
+                divisionCases: data.report.divisionCases,
+                districtCases: data.report.districtCases
             })
         }).catch(function (error) {
             console.log(error);
@@ -47,7 +55,7 @@ class PopularPlaces extends React.Component{
     }
 
     render(){
-        const {totalCases, totalReport, division, district} = this.state
+        const {totalCases, totalReport, division, district, divisionCases, districtCases} = this.state
 
         const helpline = [
             {name: 'National Call Center', tel: '333'},
@@ -64,7 +72,7 @@ class PopularPlaces extends React.Component{
                         <div className="row">
                             <div className="col-lg-12 mb-3 mb-lg-0">
                                 <ul className="new-stats text-center">
-                                    <li>Today's Cases:</li>
+                                    <li>Last 24 hours:</li>
                                     <li className="infected"><i className="fa fa-circle"></i> <span>Infected: &nbsp;{totalCases.newinfected}</span></li>
                                     <li className="cured"><i className="fa fa-circle"></i> <span>Recovred: &nbsp;{totalCases.newrecovered}</span></li>
                                     <li className="death"><i className="fa fa-circle"></i> <span>Death: &nbsp;{totalCases.newdeath}</span></li>
@@ -134,6 +142,7 @@ class PopularPlaces extends React.Component{
                                 <div className="map-tab-nav">
                                     <span id="district" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'district')}>District Map</span>
                                     <span id="division" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'division')}>Division Map</span>
+                                    <span id="stats" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'stats')}>Statistics Table</span>
                                 </div>
                                 <div className="map-tab-content">
                                 {
@@ -143,6 +152,21 @@ class PopularPlaces extends React.Component{
                                 {
                                     this.state.map == 'district' &&
                                     <DistrictMap district={district} />
+                                }
+                                {
+                                    this.state.map == 'stats' &&
+                                    <div className="statistic-table">
+                                        <div className="row">
+                                            <div className="col-md-6">
+                                                <h6 className="table-title-head">Covid19 Cases in District</h6>
+                                                <StatsTable cases={districtCases} />
+                                            </div>
+                                            <div className="col-md-6">
+                                                <h6 className="table-title-head">Covid19 Cases in Division</h6>
+                                                <StatsTable cases={divisionCases} />
+                                            </div>
+                                        </div>
+                                    </div>
                                 }
                                 </div>
                             </div>

@@ -29,12 +29,13 @@ class DivHomeChart extends React.Component{
                         <Pie
                         isAnimationActive={false}
                         data={DATA}
+                        dataKey="value"
                         outerRadius={70} 
                         fill="#8884d8"
                         label={(entry) => entry.name}
                         >
                         {
-                            DATA.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)
+                            DATA.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)
                         }
                         
                         </Pie>

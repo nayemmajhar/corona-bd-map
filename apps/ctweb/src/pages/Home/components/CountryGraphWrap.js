@@ -8,8 +8,6 @@ class CountryGraphWrap extends Component{
         const { totalReport } = this.props
         let dataReport = totalReport.reverse()
 
-        console.log(dataReport);
-
         return(
             <section className="contry-stats">
                 <div className="container-fluid">
@@ -120,7 +118,7 @@ class CountryGraphWrap extends Component{
                         </div>
                         <div className="col-md-4">
                             <div className="graph-box">
-                                <h6 className="graph-title text-left">Daily Total Active Cases</h6>
+                                <h6 className="graph-title text-left" style={{color:'#0070C0'}}>Daily Total Active Cases</h6>
                                 <div className="stats-graph">
                                     <CovidAreaChart data={
                                         dataReport.map((item) => {
@@ -129,7 +127,7 @@ class CountryGraphWrap extends Component{
                                                 count: item.infected - item.recovered - item.death
                                             }
                                         })}
-                                        color="#e6ad00"
+                                        color="#0070C0"
                                         tColor='#000'
                                         tText="remain infected"
                                         yText="Number of Total Active Cases"

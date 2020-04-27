@@ -6,7 +6,7 @@ class DistrictMap extends React.Component{
     constructor() {
         super();
         this.state = {
-            filter: 'both'
+            filter: 'name'
         };
     }
 
@@ -33,9 +33,9 @@ class DistrictMap extends React.Component{
         const {district} = this.props
         const { filter } = this.state
 
-        const filters = ['both','name', 'counter'];
+        const filters = ['name','all'];
         
-        var textclass = ' dist-text show-both'
+        var textclass = ' dist-text show-all'
 
         if(filter == 'name'){
             textclass = ' dist-text show-name'

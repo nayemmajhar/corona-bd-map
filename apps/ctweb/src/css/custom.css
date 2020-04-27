@@ -170,6 +170,14 @@ footer .input-group-append .border-left-0{
     background: #ffffff;
 }
 
+.statistic-table {
+
+}
+
+.statistic-table .row{
+    margin: 0 auto;
+}
+
 .overall-report>div{
     background: #ffffff;
     border-radius: 6px;
@@ -387,11 +395,8 @@ g.cases-top-3 path{
     margin-right: 15px;
     cursor: pointer;
     padding: 0;
-    font-size: 12px;
+    font-size: 13px;
     text-transform: capitalize;
-}
-.filter-box ul li:last-child{
-    margin-right: 0;
 }
 
 .filter-box ul li:hover,
@@ -406,7 +411,8 @@ g.cases-top-3 path{
 }
 
 .district #district,
-.division #division{
+.division #division,
+.stats #stats{
     border-bottom: 1px solid rgb(33, 73, 204);
     color: rgb(33, 73, 204);
 }
@@ -443,6 +449,26 @@ g.cases-top-3 path{
     width: 100%;
     font-weight: 300;
     font-size: 13px;
+}
+
+.table-title-head{
+    font-size: 14px;
+    letter-spacing: 0.8px;
+    font-weight: 500;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    text-align: center;
+    color: #A05195;
+}
+
+table .newinfected{
+    color:red;
+    text-align: right;
+}
+
+table .infected,
+table .case-numeric{
+    text-align: right;
 }
 
 .mini-division-counter li:hover{
