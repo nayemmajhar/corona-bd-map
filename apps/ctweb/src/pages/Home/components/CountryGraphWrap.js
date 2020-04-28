@@ -68,13 +68,13 @@ class CountryGraphWrap extends Component{
                                         dataReport.map((item) => {
                                             return {
                                                 daydate: item.daydate.replace('2020-',''),
-                                                count: item.infected - item.recovered - item.death
+                                                count:item.newdeath
                                             }
                                         })}
-                                        color="#0070C0"
+                                        color="#dc3545"
                                         tColor='#000'
-                                        tText="remain infected"
-                                        yText="Number of Total Active Cases"
+                                        tText="persons died"
+                                        yText="Number of new death"
                                     />
                                 </div>
                             </div>

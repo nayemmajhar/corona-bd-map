@@ -6,6 +6,7 @@ import ctKielApi from '../../../helpers/ctKielApi'
 import DivHomeChart from './charts/DivHomeChart'
 import CountryGraphWrap from './CountryGraphWrap'
 import DivisionGraphWrap from './DivisionGraphWrap'
+import DistrictGraphWrap from './DistrictGraphWrap'
 import StatsTable from './StatsTable'
 import axios from 'axios'
 
@@ -66,6 +67,7 @@ class PopularPlaces extends React.Component{
 
         axios.get(url).then(response => response.data)
         .then((data) => {
+            
             this.setState({
                 stats: area,
                 statsReport : {
@@ -76,7 +78,7 @@ class PopularPlaces extends React.Component{
         }).catch(function (error) {
             console.log(error);
         })
-        
+
         this.divref.current.scrollIntoView({
             behavior: 'smooth',
             block: 'start',
@@ -232,7 +234,7 @@ class PopularPlaces extends React.Component{
                                         </div>
                                     </div>
                                     <div className="pie-map text-left">
-                                        <h6 className="last-updated text-left">Division Charts</h6>
+                                        <h6 className="last-updated text-left">Divisions in Chart</h6>
                                         <div className="stats-box">
                                             <DivHomeChart division={division} />
                                         </div>
@@ -246,6 +248,10 @@ class PopularPlaces extends React.Component{
                 {
                     this.state.stats === 'division' &&
                     <DivisionGraphWrap name={statsReport.name} reports={ statsReport.report } />
+                }
+                {
+                    this.state.stats === 'district' &&
+                    <DistrictGraphWrap name={statsReport.name} reports={ statsReport.report } />
                 }
                 </div>
                 <CountryGraphWrap totalReport={totalReport} />

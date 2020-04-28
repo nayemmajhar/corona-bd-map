@@ -111,22 +111,22 @@ class ReportController extends Controller
         ], 200);
     }
 
-    public function showPlaceById($id){
+    public function showDistrictOverview($name){
+        $reports = array();
 
-        $place = DB::table('places')
-                    ->join('place_infomation', 'place_infomation.place_id', '=', 'places.id')
-                    ->select(DB::raw('places.*, place_infomation.*'))
-                    ->where('places.id', '=', $id)
-                    ->first();
-
-                    $places = DB::table('places')
-                            ->join('place_infomation', 'place_infomation.place_id', '=', 'places.id')
-                            ->select(DB::raw('places.*, place_infomation.*'))
-                            ->get();
+        $districtCases = DB::select('SELECT districts.title as title, daydate, infected, recovered, death,
+                                    infected - lag(infected,1,0) OVER (ORDER BY daydate) AS newinfected,
+                                    recovered - lag(recovered,1,0) OVER (ORDER BY daydate) AS newrecovered,
+                                    death - lag(death,1,0) OVER (ORDER BY daydate) AS newdeath
+                                    FROM daily_report_districts
+                                    LEFT JOIN districts ON districts.id = daily_report_districts.district_id
+                                    WHERE districts.title = \''.$name .'\'
+                                    ORDER BY daydate DESC LIMIT 10');
+                                    
+        $reports['districtStats'] = $districtCases;
 
         return response()->json([
-            'place' => $place,
-            'places' => $places,
+            'report' => $reports,
             'message' => 'Success'
         ], 200);
     }

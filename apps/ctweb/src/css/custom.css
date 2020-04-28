@@ -188,10 +188,6 @@ footer .input-group-append .border-left-0{
     background: #ffffff;
 }
 
-.statistic-table {
-
-}
-
 .statistic-table .row{
     margin: 0 auto;
 }
@@ -316,8 +312,13 @@ footer .input-group-append .border-left-0{
     margin-top: 25px;
 }
 
-#BD_XXX_District_locator_map{
+#BD_XXX_District_locator_map,
+#DistrictMap{
     cursor: pointer;
+}
+
+#fk-home{
+    min-height: 600px;
 }
 
 .map-color.hover-color path{
@@ -532,7 +533,7 @@ table .case-numeric{
 
 .division-stats{
     background: rgba(112, 170, 255, 0.78);
-    padding: 10px 0 0px;
+    padding: 10px 0 30px;
 }
 
 .overall-info{
@@ -611,6 +612,7 @@ table .case-numeric{
     .new-stats li{
         text-align: left;
         width: 50%;
+        margin-bottom: 5px;
     }
 
     .new-stats li:first-child{
@@ -640,6 +642,29 @@ table .case-numeric{
 
     .statistic-table table {
         width: 100%;
+    }
+
+    .overall-info li{
+        width: 25%;
+    }
+
+    .overall-info li .info{
+        min-height: 40px;
+    }
+
+    .statistic-table table th{
+        font-size: 11px;
+        padding:2px!important;
+    }
+    .statistic-table table td{
+        font-size: 12px;
+        padding:2px!important
+    }
+
+    .copyright-text{
+        text-align: left;
+        padding-left: 10px;
+        line-height: 32px;
     }
 }
 

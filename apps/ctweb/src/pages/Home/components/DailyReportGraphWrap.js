@@ -9,7 +9,7 @@ class DailyReportGraphWrap extends Component{
             <div className="row section-body">
                 <div className="col-md-4">
                     <div className="graph-box">
-                        <h6 className="graph-title text-left" style={{color:"#ffc107"}}>Daily Infected</h6>
+                        <h6 className="graph-title text-left" style={{color:"#ffc107"}}>Daily New Infected</h6>
                         <div className="stats-graph">
                             <CovidAreaChart data={
                                 dataReport.map((item) => {
@@ -28,7 +28,7 @@ class DailyReportGraphWrap extends Component{
                 </div>
                 <div className="col-md-4">
                     <div className="graph-box">
-                        <h6 className="graph-title text-left" style={{color:"#28a745"}}>Daily Recovered</h6>
+                        <h6 className="graph-title text-left" style={{color:"#28a745"}}>Daily New Recovered</h6>
                         <div className="stats-graph">
                             <CovidAreaChart data={
                                 dataReport.map((item) => {
@@ -47,7 +47,7 @@ class DailyReportGraphWrap extends Component{
                 </div>
                 <div className="col-md-4">
                     <div className="graph-box">
-                        <h6 className="graph-title text-left" style={{color:"#dc3545"}}>Daily Death</h6>
+                        <h6 className="graph-title text-left" style={{color:"#dc3545"}}>Daily New Death</h6>
                         <div className="stats-graph">
                             <CovidAreaChart data={
                                 dataReport.map((item) => {

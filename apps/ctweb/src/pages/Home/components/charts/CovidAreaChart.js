@@ -5,13 +5,13 @@ class CovidAreaChart extends PureComponent{
 
     render(){
         const { data, color, tColor, yText, tText} = this.props
-
+        
         return(
             <div>
                 <ResponsiveContainer width="100%" height={280}>
                     <AreaChart
                         data={data}
-                        margin={{ top: 5, right: 5, bottom: 30, left: 25 }}
+                        margin={{ top: 5, right: 5, bottom: 30, left: 0 }}
                     >
                         <CartesianGrid stroke='#f1f1f1' strokeDasharray="3 3" />
                         <XAxis
@@ -21,7 +21,7 @@ class CovidAreaChart extends PureComponent{
                             label={{ value: "Date of last "+ data.length +" days", position: "centerBottom", dy: 35}} 
                         />
                         <YAxis
-                            label={{ value: yText, angle: -90,   dx: -35}}
+                            label={false}
                         />
                         <Tooltip content={<CustomTooltip text={tText} tolColor={tColor} />}/>
                         <Area fillOpacity='.7' dot={{ stroke: '#2F4B7C', strokeWidth: 2 }} type="monotone" dataKey="count" fill={color} stroke="#2F4B7C" />

@@ -3,11 +3,11 @@ import styled from 'styled-components'
 import { useTable, useSortBy, usePagination } from 'react-table'
 
 const Styles = styled.div`
-  padding: 9px;
 
   table {
     border-spacing: 0;
     border: 1px solid black;
+    width:100%;
 
     tr {
       :last-child {
