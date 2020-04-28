@@ -14,8 +14,10 @@ class ReportController extends Controller
 
         $reports = array();
 
-        $divisionCases = DB::select('SELECT divisions.title as title, daydate, infected,
-                                    infected - lag(infected,1,0) OVER (PARTITION BY division_id ORDER BY daydate) AS newinfected
+        $divisionCases = DB::select('SELECT divisions.title as title, daydate, infected, recovered, death,
+                                    infected - lag(infected,1,0) OVER (PARTITION BY division_id ORDER BY daydate) AS newinfected,
+                                    recovered - lag(recovered,1,0) OVER (PARTITION BY division_id ORDER BY daydate) AS newrecovered,
+                                    death - lag(death,1,0) OVER (PARTITION BY division_id ORDER BY daydate) AS newdeath
                                     FROM daily_report_division
                                     LEFT JOIN divisions ON divisions.id = daily_report_division.division_id
                                     ORDER BY daydate DESC LIMIT 8');
@@ -27,8 +29,10 @@ class ReportController extends Controller
                                     tests - lag(tests,1,0) OVER (ORDER BY daydate) AS newtests
                                     FROM daily_report_overall ORDER BY daydate DESC LIMIT 8');
 
-        $districtCases = DB::select('SELECT districts.title as title, daydate, infected,
-                                    infected - lag(infected,1,0) OVER (PARTITION BY district_id ORDER BY daydate) AS newinfected
+        $districtCases = DB::select('SELECT districts.title as title, daydate, infected, recovered, death,
+                                    infected - lag(infected,1,0) OVER (PARTITION BY district_id ORDER BY daydate) AS newinfected,
+                                    recovered - lag(recovered,1,0) OVER (PARTITION BY district_id ORDER BY daydate) AS newrecovered,
+                                    death - lag(death,1,0) OVER (PARTITION BY district_id ORDER BY daydate) AS newdeath
                                     FROM daily_report_districts
                                     LEFT JOIN districts ON districts.id = daily_report_districts.district_id
                                     ORDER BY daydate DESC LIMIT 64');

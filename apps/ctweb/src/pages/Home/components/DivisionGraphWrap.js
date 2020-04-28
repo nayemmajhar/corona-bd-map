@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import CovidLineChart from './charts/CovidLineChart'
 import StatsTable from './StatsTable'
+import DailyReportGraphWrap from './DailyReportGraphWrap'
+import GraphHeroSection from './GraphHeroSection'
 
 class DivisionGraphWrap extends Component{
     
     render(){
         const { name, reports } = this.props
             
-        const last24Hours = reports.divisionStats[0]
+        const todayStats = reports.divisionStats[0]
         const divReport = [].concat(reports.divisionStats).reverse()
 
         return(
@@ -19,39 +21,23 @@ class DivisionGraphWrap extends Component{
                         </div>
                     </div>
                 </div>
+                <GraphHeroSection todayStats={todayStats} />
                 <div className="container-fluid">
+                    <DailyReportGraphWrap dataReport={divReport} />
                     <div className="row section-body">
-                        <div className="col-md-3">
-                            <div className="graph-box">
-                                <h6 className="graph-title text-left">Overall Cases of {name} </h6>
-                                <div className="stats-graph">
-                                    <ul className="overall-info">
-                                        <li className="infected">
-                                            <span className="title">{last24Hours.infected}</span>
-                                            <span className="info">Infected</span>
-                                        </li>
-                                        <li className="recovered">
-                                            <span className="title">{last24Hours.recovered}</span>
-                                            <span className="info">Recovered</span>
-                                        </li>
-                                        <li className="death">
-                                            <span className="title">{last24Hours.death}</span>
-                                            <span className="info">Death</span>
-                                        </li>
-                                        <li className="newcases">
-                                            <span className="title">+{last24Hours.newinfected}</span>
-                                            <span className="info">Last 24 Hours</span>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
                         <div className="col-md-5">
                             <div className="graph-box">
                                 <h6 className="graph-title text-left" style={{color:"#17a2b8"}}>Total cases ( Infected, Recovered & Death )</h6>
                                 <div className="stats-graph">
                                     <CovidLineChart
-                                        data={divReport}
+                                        data={divReport.map((item) => {
+                                            return {
+                                                daydate: item.daydate.replace('2020-',''),
+                                                infected: item.infected,
+                                                recovered: item.recovered,
+                                                death: item.death
+                                            }
+                                        })}
                                         color1="#ffc107"
                                         color2="#28a745"
                                         color3="#dc3545"
@@ -59,7 +45,7 @@ class DivisionGraphWrap extends Component{
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4">
+                        <div className="col-md-7">
                             <div className="graph-box">
                                 <h6 className="graph-title text-left" style={{color:"#0070C0"}}>Districts of {name}</h6>
                                 <div className="stats-graph">

@@ -16,7 +16,7 @@ class PopularPlaces extends React.Component{
         this.state = {
             division:{},
             totalCases: {},
-            map:'division',
+            map:'district',
             stats: ''
         };
 
@@ -186,13 +186,13 @@ class PopularPlaces extends React.Component{
                                     this.state.map == 'stats' &&
                                     <div className="statistic-table">
                                         <div className="row">
-                                            <div className="col-md-6">
-                                                <h6 className="table-title-head">Covid19 Cases in District</h6>
-                                                <StatsTable cases={districtCases} />
-                                            </div>
-                                            <div className="col-md-6">
+                                            <div className="col-md-12">
                                                 <h6 className="table-title-head">Covid19 Cases in Division</h6>
                                                 <StatsTable cases={divisionCases} />
+                                            </div>
+                                            <div className="col-md-12">
+                                                <h6 className="table-title-head">Covid19 Cases in District</h6>
+                                                <StatsTable cases={districtCases} />
                                             </div>
                                         </div>
                                     </div>

@@ -72,7 +72,7 @@ function Table({ columns, data, }) {
         data,
         initialState: { 
             pageIndex: 0,
-            pageSize: 20
+            pageSize: 10
         },
     },
     useSortBy,
@@ -110,7 +110,7 @@ function Table({ columns, data, }) {
         </tbody>
       </table>
       {
-          data.length > 19 &&
+          data.length > 10 &&
           <div className="pagination">
             <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
             {'<<'}
@@ -136,7 +136,7 @@ function Table({ columns, data, }) {
                 setPageSize(Number(e.target.value))
             }}
             >
-            {[20, 40, 64].map(pageSize => (
+            {[10, 20, 40, 64].map(pageSize => (
                 <option key={pageSize} value={pageSize}>
                 Show {pageSize}
                 </option>
@@ -149,16 +149,36 @@ function Table({ columns, data, }) {
   )
 }
 
-const columns = [{ 
+const columns = [
+  { 
     Header: 'Name', 
     accessor: 'title' 
-    },{ 
+  },
+  { 
     Header: 'Total Cases', 
     accessor: 'infected' 
-    },{ 
+  },
+  { 
     Header: 'New Cases', 
     accessor: 'newinfected' 
-}] 
+  },
+  { 
+    Header: 'Total Cured', 
+    accessor: 'recovered' 
+  },
+  { 
+    Header: 'New Cured', 
+    accessor: 'newrecovered' 
+  },
+  { 
+    Header: 'Total Death', 
+    accessor: 'death' 
+  },
+  { 
+    Header: 'New Death', 
+    accessor: 'newdeath' 
+  }
+] 
 
 class StatsTable extends React.Component {
     render(){

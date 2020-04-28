@@ -84,10 +84,13 @@ footer .input-group-append .border-left-0{
     border-color: #f1f1f1!important;
 }
 
+
+
 .section-header{
     background-color: #ffffff;
     padding-top: 10px;
     padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .section-header p{
@@ -95,9 +98,24 @@ footer .input-group-append .border-left-0{
     font-weight: 600;
 }
 
-.section-body{
+.division-stats .section-header{
     padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 0px;
+    border-bottom: 1px solid #EFF2F6;
+}
+
+.division-stats .section-header p{
+    font-size: 16px;
+}
+
+.division-stats .section-hero{
+    background-color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.contry-stats{
+    margin-bottom: 20px;
 }
 
 .custom-tooltip p{
@@ -513,49 +531,44 @@ table .case-numeric{
 }
 
 .division-stats{
-    background: rgba(0, 0, 0, 0.612);
-    padding: 30px 0 10px;
+    background: rgba(112, 170, 255, 0.78);
+    padding: 10px 0 0px;
 }
 
-.overall-info {
-
+.overall-info{
+    text-align: center;
+    padding: 20px 0;
 }
 
 .overall-info li{
-    width: 50%;
+    width: 15%;
     display: inline-block;
     text-align: center;
-    margin-bottom: 45px;
 }
 
 .overall-info li .title{
     display: block;
-    background: black;
-    width: 64px;
-    height: 64px;
-    line-height: 64px;
+    line-height: 36px;
     text-align: center;
     border-radius: 50%;
-    font-size: 24px;
+    font-size: 36px;
     font-weight: 500;
-    margin: 0 auto 10px;
-    color: #f1f1f1;
 }
 
 .overall-info li.infected .title{
-    background-color: #ffc107;
+    color: #ffc107;
 }
 
 .overall-info li.recovered .title{
-    background-color: #28a745;
+    color: #28a745;
 }
 
 .overall-info li.death .title{
-    background-color: #dc3545;
+    color: #dc3545;
 }
 
 .overall-info li.newcases .title{
-    background-color: #17a2b8;
+    color: #17a2b8;
 }
 
 
