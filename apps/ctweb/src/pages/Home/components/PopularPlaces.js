@@ -75,14 +75,14 @@ class PopularPlaces extends React.Component{
                     report: data.report
                 }
             })
+
+            this.divref.current.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
         }).catch(function (error) {
             console.log(error);
         })
-
-        this.divref.current.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start',
-          })
     }
 
     render(){
@@ -173,7 +173,7 @@ class PopularPlaces extends React.Component{
                                 <div className="map-tab-nav">
                                     <span id="district" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'district')}>District Map</span>
                                     <span id="division" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'division')}>Division Map</span>
-                                    <span id="stats" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'stats')}>Statistics Table</span>
+                                    <span id="stats" className="map-tab" onClick={this.onClickChangeMap.bind(this, 'stats')}>Statistical Table</span>
                                 </div>
                                 <div className="map-tab-content">
                                 {
@@ -214,23 +214,25 @@ class PopularPlaces extends React.Component{
                                     </div>
                                     <div className="overall-active-case">
                                         <h6 className="last-updated division-info text-left">Covid19 Cases by Division</h6>
-                                        <div className="stats-box">
-                                            <ul className="mini-division-counter">
-                                                <li>
-                                                    <span className="name-h">Name</span>
-                                                    <span className="infected-h">Infected</span>
-                                                </li>
-                                                {
-                                                    Object.keys(division).map((key,index) =>{
-                                                        return(
-                                                            <li key={index}>
-                                                                <span className="name">{division[key].title}</span>
-                                                                <span className="infected">{division[key].infected}</span>
-                                                            </li>
-                                                        )
-                                                    })
-                                                }
-                                            </ul>
+                                        <div className="stats-box div-table">
+                                            
+                                            <StatsTable cases={
+                                                Object.keys(division).map((key,index) =>{
+                                                    return{
+                                                        title: division[key].title,
+                                                        infected: division[key].infected,
+                                                        recovered: division[key].recovered,
+                                                        death: division[key].death
+                                                    }
+                                                })
+                                            } columns={
+                                                [
+                                                    {  Header: 'Name',  accessor: 'title' },
+                                                    { Header: 'Total Cases', accessor: 'infected' },
+                                                    { Header: 'Total Cured',  accessor: 'recovered' },
+                                                    { Header: 'Total Death', accessor: 'death' }
+                                                ] 
+                                            }/>
                                         </div>
                                     </div>
                                     <div className="pie-map text-left">

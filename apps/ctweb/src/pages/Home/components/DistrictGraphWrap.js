@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CovidAreaChart from './charts/CovidAreaChart'
 import GraphHeroSection from './GraphHeroSection'
-import DailyReportGraphWrap from './DailyReportGraphWrap'
 
 class DistrictGraphWrap extends Component{
     
@@ -10,7 +9,6 @@ class DistrictGraphWrap extends Component{
             
         const todayStats = reports.districtStats[0]
         const divReport = [].concat(reports.districtStats).reverse()
-        console.log(divReport);
         
         return(
             <section className="division-stats">
@@ -23,7 +21,7 @@ class DistrictGraphWrap extends Component{
                 </div>
                 <GraphHeroSection todayStats={todayStats} />
                 <div className="row section-body">
-                    <div className="col-md-4">
+                    <div className="col-lg-4 col-md-6">
                         <div className="graph-box">
                             <h6 className="graph-title text-left" style={{color:"#ffc107"}}>Total Infected Cases</h6>
                             <div className="stats-graph">
@@ -42,7 +40,7 @@ class DistrictGraphWrap extends Component{
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-lg-4 col-md-6">
                         <div className="graph-box">
                             <h6 className="graph-title text-left" style={{color:"#28a745"}}>Total Recovered Cases</h6>
                             <div className="stats-graph">
@@ -61,7 +59,7 @@ class DistrictGraphWrap extends Component{
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-4">
+                    <div className="col-lg-4 col-md-6">
                         <div className="graph-box">
                             <h6 className="graph-title text-left" style={{color:"#dc3545"}}>Total Death Cases</h6>
                             <div className="stats-graph">

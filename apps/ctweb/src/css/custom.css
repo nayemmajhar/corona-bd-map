@@ -467,14 +467,6 @@ g.cases-top-3 path{
     margin-bottom: 0;
 }
 
-
-.mini-division-counter li{
-    display: inline-block;
-    width: 100%;
-    font-weight: 300;
-    font-size: 13px;
-}
-
 .table-title-head{
     font-size: 14px;
     letter-spacing: 0.8px;
@@ -485,46 +477,56 @@ g.cases-top-3 path{
     color: #A05195;
 }
 
-table .newinfected{
-    color:red;
-    text-align: right;
+table .title{
+    text-align:left;
+}
+
+.div-table table {
+    font-size: 12px;
+}
+
+.div-table table th,
+.div-table table td{
+    padding: 2px!important;
 }
 
 table .infected,
-table .case-numeric{
+table .newinfected,
+table .recovered,
+table .newrecovered,
+table .death,
+table .newdeath,
+table .case-numeric {
     text-align: right;
 }
 
-.mini-division-counter li:hover{
-    background-color: #EFF2F6;
+table .newinfected,
+table .newrecovered,
+table .newdeath {
+    color: red;
 }
 
-.mini-division-counter li:first-child:hover{
-    background-color: #ffffff;
+.div-table table .infected{
+    color: #FBBC23;
 }
 
-.overall-report .last-updated.division-info{
-    color: #fbb140;
-    font-weight: 600;
-    letter-spacing: 0.7px;
+.div-table table .recovered{
+    color: #28a745;
 }
 
-.mini-division-counter li [class*='name']{
-    float: left;
-    display: inline-block;
+.div-table table .death{
+    color: #dc3545;
 }
 
-.mini-division-counter li [class*='infected']{
-    float: right;
-    display: inline-block;
-    font-weight: 400;
+table tbody tr:hover{
+    background-color:#EFF2F6;
 }
 
-.mini-division-counter li .name-h,
-.mini-division-counter li .infected-h{
-    font-weight: 700;
-    font-size: 12px;
-    margin-bottom: 3px;
+.table-notice{
+    font-size: 10px;
+    text-align: right;
+    margin-bottom: 4px;
+    font-style: italic;
 }
 
 .text-md-right{
@@ -572,6 +574,26 @@ table .case-numeric{
     color: #17a2b8;
 }
 
+@media (min-width: 768px ) and ( max-width: 900px) { 
+    .new-stats li{
+        width: 20%;
+    }
+
+    .left-sidebar>div{
+        display: inline-block;
+        width: 50%;
+        border-left: 1px solid #E9E5E0;
+    }
+
+    .left-sidebar>div:last-child{
+        display: none;
+    }
+
+    .overall-active-case{
+        margin-top: 10px;
+    }
+}
+
 
 
 /* mobile device */
@@ -597,11 +619,6 @@ table .case-numeric{
 
     .overall-active-case{
         margin-top: 10px;
-    }
-
-    .overall-report>div:last-child{
-        width: 100%;
-        margin-bottom: 10px;
     }
 
     .new-stats{
@@ -640,8 +657,8 @@ table .case-numeric{
         background-color: #EFF2F6;
     }
 
-    .statistic-table table {
-        width: 100%;
+    table {
+        width: 100%!important;
     }
 
     .overall-info li{

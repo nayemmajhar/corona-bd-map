@@ -81,6 +81,7 @@ function Table({ columns, data, }) {
 
   return (
     <>
+      <p className="table-notice">* Click on column header to sort</p>
       <table {...getTableProps()}>
         <thead>
           <tr>
@@ -182,9 +183,15 @@ const columns = [
 
 class StatsTable extends React.Component {
     render(){
+        let tabColumns = ''
+        if(typeof this.props.columns !== 'undefined'){
+          tabColumns = this.props.columns
+        } else {
+          tabColumns = columns
+        }
         return (
             <Styles>
-                <Table columns={columns} data={this.props.cases} />
+                <Table columns={tabColumns} data={this.props.cases} />
             </Styles>
         )
     }

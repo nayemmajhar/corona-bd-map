@@ -24,15 +24,14 @@ class DivHomeChart extends React.Component{
 
         return(
             <div>
-                <ResponsiveContainer width="100%" height={250}>
+                <ResponsiveContainer width="100%" height={280}>
                     <PieChart onMouseEnter={this.onPieEnter}>
                         <Pie
                         isAnimationActive={false}
                         data={DATA}
                         dataKey="value"
-                        outerRadius={70} 
+                        outerRadius={90} 
                         fill="#8884d8"
-                        label={(entry) => entry.name}
                         >
                         {
                             DATA.map((entry, index) => <Cell key={index} fill={COLORS[index % COLORS.length]}/>)

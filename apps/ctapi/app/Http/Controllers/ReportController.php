@@ -27,7 +27,7 @@ class ReportController extends Controller
                                     recovered - lag(recovered,1,0) OVER (ORDER BY daydate) AS newrecovered,
                                     death - lag(death,1,0) OVER (ORDER BY daydate) AS newdeath,
                                     tests - lag(tests,1,0) OVER (ORDER BY daydate) AS newtests
-                                    FROM daily_report_overall ORDER BY daydate DESC LIMIT 8');
+                                    FROM daily_report_overall ORDER BY daydate DESC LIMIT 10');
 
         $districtCases = DB::select('SELECT districts.title as title, daydate, infected, recovered, death,
                                     infected - lag(infected,1,0) OVER (PARTITION BY district_id ORDER BY daydate) AS newinfected,
@@ -40,7 +40,7 @@ class ReportController extends Controller
         foreach ($divisionCases as $key => $item) {
             if($item->infected > 1000){
                 $divisionCases[$key]->colorClass = 'cases-top-1';
-            } elseif( 1000 >= $item->infected && $item->infected > 70){
+            } elseif( 500 >= $item->infected && $item->infected > 200){
                 $divisionCases[$key]->colorClass = 'cases-top-2';
             } else {
                 $divisionCases[$key]->colorClass = 'cases-top-3';
@@ -90,7 +90,7 @@ class ReportController extends Controller
                                     FROM daily_report_division
                                     LEFT JOIN divisions ON divisions.id = daily_report_division.division_id
                                     WHERE divisions.title = \''.$name .'\'
-                                    ORDER BY daydate DESC LIMIT 15');
+                                    ORDER BY daydate DESC LIMIT 10');
 
         $districtCases = DB::select('SELECT districts.title as title, daydate, infected, recovered, death,
                                     infected - lag(infected,1,0) OVER (PARTITION BY district_id ORDER BY daydate) AS newinfected,
