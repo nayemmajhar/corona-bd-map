@@ -605,6 +605,31 @@ table tbody tr:hover{
         border-left: 1px solid #E9E5E0;
     }
 
+    .dist-text{
+        font-size: 11px;
+    }
+
+    .left-sidebar>div:last-child{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .hotline-number .institute span{
+        display: inline-block;
+    }
+
+    .hotline-number .institute .name{
+        margin-right: 10px;
+    }
+
+    .hotline-number .institute .telephone a{
+        font-size: 16px;
+    }
+
+    .hotline-number .institute{
+        margin-bottom: 10px;
+    }
+
     .left-sidebar .stats-box{
         padding: 20px;
     }

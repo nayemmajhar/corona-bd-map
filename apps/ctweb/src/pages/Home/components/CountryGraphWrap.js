@@ -118,19 +118,19 @@ class CountryGraphWrap extends Component{
                         </div>
                         <div className="col-lg-4 col-md-6">
                             <div className="graph-box">
-                                <h6 className="graph-title text-left" style={{color:'#0070C0'}}>Daily Total Active Cases</h6>
+                                <h6 className="graph-title text-left" style={{color:'#0070C0'}}>Total Active Cases</h6>
                                 <div className="stats-graph">
                                     <CovidAreaChart data={
                                         dataReport.map((item) => {
                                             return {
                                                 daydate: item.daydate.replace('2020-',''),
-                                                count:item.newdeath
+                                                count: item.infected - item.death - item.recovered
                                             }
                                         })}
-                                        color="#dc3545"
+                                        color="#dca500"
                                         tColor='#000'
-                                        tText="persons died"
-                                        yText="Number of new death"
+                                        tText="active cases "
+                                        yText="Number of Active Cases"
                                     />
                                 </div>
                             </div>

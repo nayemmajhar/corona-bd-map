@@ -217,6 +217,7 @@ class DivisionMap extends React.Component{
                         )
                     })
                     }
+                    <text transform="matrix(1 0 0 1 1050.3704 300.0674)" fill="#003333" font-size="28">*Click on division to view detail.</text>
                 </g>
                 {
                     Object.keys(division).length !== 0 &&
