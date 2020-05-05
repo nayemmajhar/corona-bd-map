@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import CovidAreaChart from './charts/CovidAreaChart'
 import CovidMixBarChart from './charts/CovidMixBarChart'
-import DailyReportGraphWrap from './DailyReportGraphWrap'
 
 class CountryGraphWrap extends Component{
 
