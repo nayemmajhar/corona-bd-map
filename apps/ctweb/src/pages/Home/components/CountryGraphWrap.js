@@ -1,12 +1,35 @@
 import React, { Component } from 'react';
 import CovidAreaChart from './charts/CovidAreaChart'
 import CovidMixBarChart from './charts/CovidMixBarChart'
+import ctKielApi from '../../../helpers/ctKielApi'
+import axios from 'axios'
 
 class CountryGraphWrap extends Component{
 
+    constructor() {
+        super();
+        this.state = {
+            country:[]
+        };
+
+    }
+
+    componentDidMount() {
+
+        const url = ctKielApi.URL + '/reports/country'
+        axios.get(url).then(response => response.data)
+        .then((data) => {
+            this.setState({
+                country: data.report
+            })
+        }).catch(function (error) {
+            console.log(error);
+        })
+    }
+
     render(){
-        const { totalReport } = this.props
-        let dataReport = [].concat(totalReport).reverse()
+        const { country } = this.state
+        let dataReport = [].concat(country).reverse()
         return(
             <section className="contry-stats">
                 <div className="container-fluid">

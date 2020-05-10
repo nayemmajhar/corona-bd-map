@@ -39,7 +39,6 @@ class PopularPlaces extends React.Component{
             this.setState({
                 division: divisions,
                 district: districts,
-                totalReport: data.report.totalCases,
                 totalCases: data.report.totalCases[0],
                 divisionCases: data.report.divisionCases,
                 districtCases: data.report.districtCases
@@ -86,7 +85,7 @@ class PopularPlaces extends React.Component{
     }
 
     render(){
-        const {totalCases, totalReport, division, district, divisionCases, districtCases, statsReport} = this.state
+        const {totalCases, division, district, divisionCases, districtCases, statsReport} = this.state
 
         const helpline = [
             {name: 'National Call Center', tel: '333'},
@@ -256,7 +255,7 @@ class PopularPlaces extends React.Component{
                     <DistrictGraphWrap name={statsReport.name} reports={ statsReport.report } />
                 }
                 </div>
-                <CountryGraphWrap totalReport={totalReport} />
+                <CountryGraphWrap />
                 
             </div>
         )

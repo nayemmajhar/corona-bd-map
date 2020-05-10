@@ -27,7 +27,7 @@ class ReportController extends Controller
                                     recovered - lag(recovered,1,0) OVER (ORDER BY daydate) AS newrecovered,
                                     death - lag(death,1,0) OVER (ORDER BY daydate) AS newdeath,
                                     tests - lag(tests,1,0) OVER (ORDER BY daydate) AS newtests
-                                    FROM daily_report_overall ORDER BY daydate DESC LIMIT 10');
+                                    FROM daily_report_overall ORDER BY daydate DESC LIMIT 1');
 
         $districtCases = DB::select('SELECT districts.title as title, daydate, infected, recovered, death,
                                     infected - lag(infected,1,0) OVER (PARTITION BY district_id ORDER BY daydate) AS newinfected,
@@ -127,6 +127,20 @@ class ReportController extends Controller
 
         return response()->json([
             'report' => $reports,
+            'message' => 'Success'
+        ], 200);
+    }
+
+    public function getCountryOverview(){
+        $totalCases = DB::select('SELECT daydate, infected, recovered, death, tests,
+                        infected - lag(infected,1,0) OVER (ORDER BY daydate) AS newinfected,
+                        recovered - lag(recovered,1,0) OVER (ORDER BY daydate) AS newrecovered,
+                        death - lag(death,1,0) OVER (ORDER BY daydate) AS newdeath,
+                        tests - lag(tests,1,0) OVER (ORDER BY daydate) AS newtests
+                        FROM daily_report_overall ORDER BY daydate DESC LIMIT 20');
+
+        return response()->json([
+            'report' => $totalCases,
             'message' => 'Success'
         ], 200);
     }

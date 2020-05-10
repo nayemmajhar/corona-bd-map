@@ -11,14 +11,14 @@ class CovidMixBarChart extends PureComponent{
                 <ResponsiveContainer width="100%" height={280}>
 					<BarChart
 						data={data}
-						margin={{ top: 5, right: 5, bottom: 30, left: 15 }}
+						margin={{ top: 5, right: 5, bottom: 40, left: 15 }}
 					>
 						<CartesianGrid stroke='#f1f1f1' strokeDasharray="3 3" />
 						<XAxis
                             dataKey="daydate"
-                            interval={0} tick={{ angle: -25 }}
+                            interval={0} tick={{ angle: -45 }}
                             textAnchor="end"
-                            label={{ value: "Cases of last "+ data.length +" days", position: "centerBottom", dy: 35}} 
+                            label={{ value: "Cases of last "+ data.length +" days", position: "centerBottom", dy: 45}} 
                         />
                         <YAxis label={{ value: yText, angle: -90,   dx: -25}} />
 						<Tooltip />

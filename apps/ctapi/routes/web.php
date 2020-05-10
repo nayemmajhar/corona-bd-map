@@ -22,6 +22,7 @@ $router->group(
         'prefix' => 'v1/reports'
     ], function () use ($router) {
         $router->get('/',  ['uses' => 'ReportController@showAllReports']);
+        $router->get('country', ['uses' => 'ReportController@getCountryOverview']);
         $router->get('division/{name}', ['uses' => 'ReportController@showDivisionOverview']);
         $router->get('district/{name}', ['uses' => 'ReportController@showDistrictOverview']);
 });
