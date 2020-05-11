@@ -4,21 +4,21 @@ import { ResponsiveContainer, Legend, LineChart, Line, XAxis, YAxis, CartesianGr
 class CovidLineChart extends PureComponent{
 
     render(){
-        const { data, color1, color2, color3, yText} = this.props
+        const { data, color1, color2, yText} = this.props
 
         return(
             <div>
-                <ResponsiveContainer width="100%" height={280}>
+                <ResponsiveContainer width="100%" height={340}>
                     <LineChart
                         data={data}
-                        margin={{ top: 5, right: 5, bottom: 30, left: 15 }}
+                        margin={{ top: 5, right: 10, bottom: 55, left: 15 }}
                       >
                         <CartesianGrid stroke='#f1f1f1' strokeDasharray="3 3" />
                         <XAxis
                             dataKey="daydate"
-                            interval={0} tick={{ angle: -25 }}
+                            interval={0} tick={{ angle: -90 }}
                             textAnchor="end"
-                            label={{ value: "Cases of last "+ data.length +" days", position: "centerBottom", dy: 35}} 
+                            label={{ value: "Cases of last "+ data.length +" days", position: "centerBottom", dy: 50}} 
                         />
                         <YAxis
                             label={{ value: yText, angle: -90,   dx: -35}}
@@ -26,8 +26,7 @@ class CovidLineChart extends PureComponent{
                         <Tooltip />
                         <Legend verticalAlign="top"/>
                         <Line type="monotone" dataKey="infected" stroke={color1} strokeWidth="2" />
-                        <Line type="monotone" dataKey="recovered" stroke={color2}  strokeWidth="2"  />
-                        <Line type="monotone" dataKey="death" stroke={color3} strokeWidth="2"  />
+                        <Line type="monotone" dataKey="solved" stroke={color2}  strokeWidth="2"  />
                     </LineChart>
                 </ResponsiveContainer>
             </div>

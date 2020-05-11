@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import CovidLineChart from './charts/CovidLineChart'
 import StatsTable from './StatsTable'
 import GraphHeroSection from './GraphHeroSection'
 import CovidAreaChart from './charts/CovidAreaChart'
@@ -24,7 +23,7 @@ class DivisionGraphWrap extends Component{
                 <GraphHeroSection todayStats={todayStats} />
                 <div className="container-fluid">
                     <div className="row section-body">
-                        <div className="col-lg-4 col-md-6">
+                        <div className="col-lg-5 col-md-6">
                             <div className="graph-box">
                                 <h6 className="graph-title text-left" style={{color:"#ffc107"}}>Daily New Infected</h6>
                                 <div className="stats-graph">
@@ -39,64 +38,6 @@ class DivisionGraphWrap extends Component{
                                         tColor='#000'
                                         tText="persons infected"
                                         yText="Number of new cases"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="graph-box">
-                                <h6 className="graph-title text-left" style={{color:"#28a745"}}>Total Recovered</h6>
-                                <div className="stats-graph">
-                                    <CovidAreaChart data={
-                                        divReport.map((item) => {
-                                            return {
-                                                daydate: item.daydate.replace('2020-',''),
-                                                count:item.recovered
-                                            }
-                                        })}
-                                        color="#28a745"
-                                        tColor='#000'
-                                        tText="persons cured"
-                                        yText="Number of new cured"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-4 col-md-6">
-                            <div className="graph-box">
-                                <h6 className="graph-title text-left" style={{color:"#dc3545"}}>Total Death</h6>
-                                <div className="stats-graph">
-                                    <CovidAreaChart data={
-                                        divReport.map((item) => {
-                                            return {
-                                                daydate: item.daydate.replace('2020-',''),
-                                                count:item.death
-                                            }
-                                        })}
-                                        color="#dc3545"
-                                        tColor='#000'
-                                        tText="persons died"
-                                        yText="Number of new death"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-lg-5 col-md-6">
-                            <div className="graph-box">
-                                <h6 className="graph-title text-left" style={{color:"#17a2b8"}}>Total cases ( Infected, Recovered & Death )</h6>
-                                <div className="stats-graph">
-                                    <CovidLineChart
-                                        data={divReport.map((item) => {
-                                            return {
-                                                daydate: item.daydate.replace('2020-',''),
-                                                infected: item.infected,
-                                                recovered: item.recovered,
-                                                death: item.death
-                                            }
-                                        })}
-                                        color1="#ffc107"
-                                        color2="#28a745"
-                                        color3="#dc3545"
                                     />
                                 </div>
                             </div>

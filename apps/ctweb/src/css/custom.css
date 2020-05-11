@@ -371,13 +371,21 @@ g.cases-top-3 path{
     fill:#FFEAE5;
 }
 
+.cases-dist-top-1,
+.cases-dist-top-2,
+.cases-dist-top-3,
+.cases-dist-top-4,
+.cases-dist-top-5 {
+    stroke: #f9f9f9;
+    stroke-width: .3;
+}
+
 .cases-dist-top-1:hover,
 .cases-dist-top-2:hover,
 .cases-dist-top-3:hover,
 .cases-dist-top-4:hover,
 .cases-dist-top-5:hover {
     fill:#fca521;
-    stroke: #fca521;
 }
 
 .map-tab-nav{
@@ -707,6 +715,10 @@ table tbody tr:hover{
         text-align: left;
         padding-left: 10px;
         line-height: 32px;
+    }
+
+    .recharts-cartesian-axis-tick-line{
+        font-size: 12px;
     }
 }
 
